@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BDE313172CFB63250036A511 /* DevicePpi in Frameworks */ = {isa = PBXBuildFile; productRef = BDE313162CFB63250036A511 /* DevicePpi */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BDE3127F2CF7D9A40036A511 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,6 +33,21 @@
 		BDE312882CF7D9A40036A511 /* Tracker HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BDE312D62CF9CD7C0036A511 /* Exceptions for "Fonts" folder in "Tracker Hub" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Readex Pro/ReadexPro-Bold.ttf",
+				"Readex Pro/ReadexPro-ExtraLight.ttf",
+				"Readex Pro/ReadexPro-Light.ttf",
+				"Readex Pro/ReadexPro-Medium.ttf",
+				"Readex Pro/ReadexPro-Regular.ttf",
+				"Readex Pro/ReadexPro-SemiBold.ttf",
+			);
+			target = BDE3126C2CF7D9A20036A511 /* Tracker Hub */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BDE3126F2CF7D9A20036A511 /* Tracker Hub */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -45,6 +64,19 @@
 			path = "Tracker HubUITests";
 			sourceTree = "<group>";
 		};
+		BDE312B02CF7E59F0036A511 /* Themes */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		BDE312C92CF9A9550036A511 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BDE312D62CF9CD7C0036A511 /* Exceptions for "Fonts" folder in "Tracker Hub" target */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDE313172CFB63250036A511 /* DevicePpi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +108,12 @@
 		BDE312642CF7D9A20036A511 = {
 			isa = PBXGroup;
 			children = (
+				BDE312B02CF7E59F0036A511 /* Themes */,
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
 				BDE312812CF7D9A40036A511 /* Tracker HubTests */,
 				BDE3128B2CF7D9A40036A511 /* Tracker HubUITests */,
 				BDE3126E2CF7D9A20036A511 /* Products */,
+				BDE312C82CF9A9470036A511 /* static */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +125,14 @@
 				BDE312882CF7D9A40036A511 /* Tracker HubUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BDE312C82CF9A9470036A511 /* static */ = {
+			isa = PBXGroup;
+			children = (
+				BDE312C92CF9A9550036A511 /* Fonts */,
+			);
+			path = static;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +152,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
+				BDE312B02CF7E59F0036A511 /* Themes */,
 			);
 			name = "Tracker Hub";
 			packageProductDependencies = (
+				BDE313162CFB63250036A511 /* DevicePpi */,
 			);
 			productName = "Tracker Hub";
 			productReference = BDE3126D2CF7D9A20036A511 /* Tracker Hub.app */;
@@ -195,6 +240,9 @@
 			);
 			mainGroup = BDE312642CF7D9A20036A511;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BDE3126E2CF7D9A20036A511 /* Products */;
 			projectDirPath = "";
@@ -394,6 +442,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -412,7 +461,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -431,6 +481,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -449,7 +500,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -583,6 +635,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clafou/DevicePpi";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.21;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BDE313162CFB63250036A511 /* DevicePpi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */;
+			productName = DevicePpi;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE312652CF7D9A20036A511 /* Project object */;
 }

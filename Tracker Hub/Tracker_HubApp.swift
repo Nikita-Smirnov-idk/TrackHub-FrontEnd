@@ -11,7 +11,7 @@ import SwiftUI
 struct Tracker_HubApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(DataSource())
         }
     }
 }

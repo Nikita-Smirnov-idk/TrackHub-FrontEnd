@@ -10,6 +10,8 @@ import UIKit
 protocol Theme {
     var primaryColor: UIColor { get }
     var backgroundColor: UIColor { get }
-    var secondBackgroundColor: UIColor { get }
+    var secondaryBackgroundColor: UIColor { get }
+    var buttonsBackgroundColor: UIColor { get }
+    var secondaryFontColor: UIColor { get }
     var themeName: String { get }
 }

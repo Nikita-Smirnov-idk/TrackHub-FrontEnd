@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ReadexPro-Bold.ttf</string>
+		<string>ReadexPro-Medium.ttf</string>
+		<string>ReadexPro-SemiBold.ttf</string>
+		<string>ReadexPro-ExtraLight.ttf</string>
+		<string>ReadexPro-Light</string>
+		<string>ReadexPro.ttf</string>
+		<string>ReadexPro-Bold.ttf</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array/>
+</dict>
+</plist>

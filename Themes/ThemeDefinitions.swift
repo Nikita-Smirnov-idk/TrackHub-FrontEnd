@@ -7,10 +7,11 @@
 
 import UIKit
 
-struct DarkTheme: Theme {
-    var primaryColor: UIColor {  }
-}
-
-struct LightTheme: Theme {
-    
+struct Theme1: Theme {
+    var primaryColor: UIColor = UIColor(named: "1-primaryColor")!
+    var backgroundColor: UIColor = UIColor(named: "1-backgroundColor")!
+    var secondaryBackgroundColor: UIColor = UIColor(named: "1-secondaryBackgroundColor")!
+    var buttonsBackgroundColor: UIColor = UIColor(named: "1-buttonsBackgroundColor")!
+    var secondaryFontColor: UIColor = UIColor(named: "1-secondaryFontColor")!
+    var themeName: String = "Dark Theme"
 }
