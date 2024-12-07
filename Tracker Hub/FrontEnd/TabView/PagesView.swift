@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabBarView: View {
+struct PagesView: View {
     @State var selectedPage = 0
     @State var tabBarImages = [
         "magnifyingglass",
@@ -16,11 +16,11 @@ struct TabBarView: View {
         "gearshape.fill"
     ]
     
-    @State var pages = [
-        SearchView(),
-        SearchView(),
-        SearchView(),
-        SearchView()
+    @State var pages: [AnyView] = [
+        AnyView(SearchView()),
+        AnyView(FirstQuestionView()),
+        AnyView(FirstQuestionView()),
+        AnyView(SearchView())
     ]
     @State var yelllowColor = Color(hex: "F5FE6C")
     @State var lightGray = Color(hex: "757575")
@@ -32,18 +32,19 @@ struct TabBarView: View {
                 pages[i]
                     .tag(i)
                     .tabItem{
-                        Image(systemName: tabBarImages[i])
-                            .background(selectedPage == i ? yelllowColor : lightGray)
-                            .onTapGesture {
-                                selectedPage = i
-                            }
+                        VStack {
+                            Image(systemName: tabBarImages[i])
+                                .foregroundColor(selectedPage == i ? yelllowColor : lightGray)
+                        }
+
                     }
             }
         }
-                .tabViewStyle(DefaultTabViewStyle()).ignoresSafeArea()
+        .tabViewStyle(DefaultTabViewStyle())
+        .ignoresSafeArea()
     }
 }
 
 #Preview {
-    TabBarView()
+    PagesView()
 }
