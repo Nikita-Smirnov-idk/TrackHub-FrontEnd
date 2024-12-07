@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PagesView: View {
     @State var selectedPage = 0
-    @State var tabBarImages = [
-        "magnifyingglass",
-        "house.fill",
-        "person.fill",
-        "gearshape.fill"
-    ]
+//    @State var tabBarImages = [
+//        "magnifyingglass",
+//        "house.fill",
+//        "person.fill",
+//        "gearshape.fill"
+//    ]
     
     @State var pages: [AnyView] = [
         AnyView(SearchView()),
@@ -26,22 +26,29 @@ struct PagesView: View {
     @State var lightGray = Color(hex: "757575")
     @State var darkGray = Color(hex: "474747")
     
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var body: some View {
-        TabView(selection: $selectedPage) {
-            ForEach(0..<pages.count, id: \.self) { i in
-                pages[i]
-                    .tag(i)
-                    .tabItem{
-                        VStack {
-                            Image(systemName: tabBarImages[i])
-                                .foregroundColor(selectedPage == i ? yelllowColor : lightGray)
-                        }
-
+        ZStack {
+            VStack {
+                TabView(selection: $selectedPage) {
+                    ForEach(0..<pages.count, id: \.self) { i in
+                        pages[i]
+                            .tag(i)
+                        
                     }
+                }
+                .tabViewStyle(DefaultTabViewStyle())
+                .ignoresSafeArea()
+            }
+            
+            VStack {
+                Spacer()
+                TabBarView(selectedPage: $selectedPage)
             }
         }
-        .tabViewStyle(DefaultTabViewStyle())
-        .ignoresSafeArea()
     }
 }
 
