@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		BDE313172CFB63250036A511 /* DevicePpi in Frameworks */ = {isa = PBXBuildFile; productRef = BDE313162CFB63250036A511 /* DevicePpi */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		BDE3127F2CF7D9A40036A511 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -84,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDE313172CFB63250036A511 /* DevicePpi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +151,6 @@
 			);
 			name = "Tracker Hub";
 			packageProductDependencies = (
-				BDE313162CFB63250036A511 /* DevicePpi */,
 			);
 			productName = "Tracker Hub";
 			productReference = BDE3126D2CF7D9A20036A511 /* Tracker Hub.app */;
@@ -241,7 +235,6 @@
 			mainGroup = BDE312642CF7D9A20036A511;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BDE3126E2CF7D9A20036A511 /* Products */;
@@ -635,25 +628,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Clafou/DevicePpi";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.21;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		BDE313162CFB63250036A511 /* DevicePpi */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */;
-			productName = DevicePpi;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE312652CF7D9A20036A511 /* Project object */;
 }

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+/// Rectangle, with option of setting corner radiuses
 struct CustomRoundedRectangle: Shape {
     var cornerRadius: CGFloat
     var corners: UIRectCorner
