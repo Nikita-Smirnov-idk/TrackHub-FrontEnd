@@ -44,7 +44,7 @@ struct QuestionsView: View
                         Button {
                         } label: {
                             Text("Back")
-                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(13)))
+                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                                 .foregroundStyle(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         }
                         Spacer()
@@ -54,7 +54,7 @@ struct QuestionsView: View
                             }
                         } label: {
                             Text("Skip")
-                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(13)))
+                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                                 .foregroundStyle(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         }
                     }
@@ -62,7 +62,7 @@ struct QuestionsView: View
                     .padding([.leading, .trailing], 20)
                 VStack{
                     Text(question)
-                        .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(16)))
+                        .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                         .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
                         .frame(height: 100)
                     Spacer()
@@ -72,11 +72,22 @@ struct QuestionsView: View
                             // code for action of button
                         } label: {
                             Text(answers[index])
-                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(13)))
+                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                                 .fixedSize(horizontal: true, vertical: true)
                                 .multilineTextAlignment(.center)
                                 .padding([.bottom, .top])
-                                .frame(width: proxy.size.width/1.5, height: proxy.size.height/12)
+                                .frame(minWidth: 300,
+                                       idealWidth: proxy.size.width/1.5,
+                                       maxWidth: 600,
+                                       minHeight: 60,
+                                       idealHeight: proxy.size.height,
+                                       maxHeight: 120
+                                )
+                                .frame(
+                                    width: AdaptiveValue(idealValue:   proxy.size.width/1.75, minValue: 300, maxValue: 450),
+                                    height:
+                                        AdaptiveValue(idealValue: proxy.size.height/10, minValue: 60, maxValue: 80)
+                                )
                                 .background(Rectangle().fill(Color(dataSource.selectedTheme.secondaryBackgroundColor))
                                     .clipShape(CustomRoundedRectangle(cornerRadius: 45, corners: (index == 0 ? [.bottomLeft, .topRight] : index == answers.count-1 ? [.bottomRight, .topLeft] : [.bottomRight, .topRight]))))
                                 .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))

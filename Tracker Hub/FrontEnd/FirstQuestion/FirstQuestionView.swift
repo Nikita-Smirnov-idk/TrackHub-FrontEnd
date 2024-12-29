@@ -30,11 +30,12 @@ struct FirstQuestionView: View {
                         .padding()
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                        .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(16)))
+                        .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSizeType2(size: 16, func_coef: 5, plus_value: 2.6, divider_value: 3.9)))
                         .frame(width: headerWidth, height: geometry.size.height * 0.2) // Адаптивная высота
                         .fixedSize(horizontal: false, vertical: true)
 
                     Spacer()
+                        .frame(height: AdaptiveValue(idealValue: geometry.size.height * 0.2, minValue: 100, maxValue: 300))
 
                     // Кнопки
                     Grid(horizontalSpacing: 0, verticalSpacing: 0) {
@@ -45,10 +46,14 @@ struct FirstQuestionView: View {
                                     .fixedSize(horizontal: true, vertical: true)
                                     .multilineTextAlignment(.center)
                                     .padding([.bottom, .top])
-                                    .frame(width: buttonWidth, height: buttonHeight)
+                                    .frame(
+                                        width: AdaptiveValue(idealValue:   geometry.size.width/3, minValue: 150, maxValue: 300),
+                                        height:
+                                            AdaptiveValue(idealValue: geometry.size.height/11, minValue: 60, maxValue: 70)
+                                    )
                                     .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
                                     .background(Color(dataSource.selectedTheme.secondaryBackgroundColor))
-                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(13)))
+                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                                     .clipShape(CustomRoundedRectangle(cornerRadius: 45, corners: [.topRight, .bottomLeft]))
                             }
                             Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
@@ -61,16 +66,19 @@ struct FirstQuestionView: View {
                                     .fixedSize(horizontal: true, vertical: true)
                                     .multilineTextAlignment(.center)
                                     .padding(.all)
-                                    .frame(width: buttonWidth, height: buttonHeight)
+                                    .frame(
+                                        width: AdaptiveValue(idealValue:   geometry.size.width/3, minValue: 150, maxValue: 300),
+                                        height:
+                                            AdaptiveValue(idealValue: geometry.size.height/11, minValue: 60, maxValue: 70)
+                                    )
                                     .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
                                     .background(Rectangle().fill(Color(dataSource.selectedTheme.secondaryBackgroundColor))
                                         .clipShape(CustomRoundedRectangle(cornerRadius: 45, corners: [.topRight, .bottomLeft])))
-                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(13)))
+                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                             }
                         }
                     }
                     Spacer()
-                        .frame(height: geometry.size.height * 0.4)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Заполняет все пространство

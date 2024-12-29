@@ -49,7 +49,6 @@ func RelativeFontSize(size: CGFloat, func_coef: CGFloat, plus_value: CGFloat, di
 /// - Returns: new font size, that depends on size of device
 func RelativeFontSizeType2(size: CGFloat, func_coef: CGFloat, plus_value: CGFloat, divider_value: CGFloat) -> CGFloat{
     let scaleFactor = screenWidth / 375
-    print(((atan(scaleFactor*func_coef) + plus_value)/divider_value) * size)
     return ((atan(scaleFactor*func_coef) + plus_value)/divider_value) * size
 }
 
@@ -63,4 +62,8 @@ func scaleScreen_y(_ value : CGFloat) -> CGFloat{
     let coefficient = value/main_height
     let new_val = coefficient * UIScreen.main.bounds.height
     return new_val
+}
+
+func AdaptiveValue(idealValue: CGFloat, minValue: CGFloat, maxValue: CGFloat) -> CGFloat {
+    return min(max(idealValue, minValue), maxValue)
 }

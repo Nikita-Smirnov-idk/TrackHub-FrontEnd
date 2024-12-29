@@ -19,6 +19,8 @@ struct WorkoutTypesView: View {
     @State private var searchText = ""
     @State var isPushedFemale: Bool = false
     @State var isPushedMale: Bool = false
+    @State private var isPressed = false // To track the button's pressed state
+    @State private var opacity: Double = 1.0 // To control the button's opacity
 
     @State var buttonsText = [
         "Силовые тренировки",
@@ -30,37 +32,30 @@ struct WorkoutTypesView: View {
         "Единоборства",
         "Единоборства",
         "Единоборства",
+        "Единоборства",
+        "Единоборства",
+        "Единоборства",
     ]
-
+    @State private var flashOpacity: Bool = false
+    
     var body: some View {
-        GeometryReader { geometry in
-            let geometryWidth = geometry.size.width
-            
-            ScrollView {
-                ForEach(0..<buttonsText.count, id: \.self) { i in
-                    Button() {
-                        // code for action of button
-                    } label: {
-                        Text(buttonsText[i])
-                            .frame(width: geometryWidth * 0.7)
-                            .fixedSize(horizontal: true, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding([.bottom, .top])
-                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                            .background(Color(dataSource.selectedTheme.secondaryBackgroundColor))
-                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: RelativeFontSize(size: 13, func_coef: 10, plus_value: 2.7, divider_value: 4.1)))
-                            
-                            .clipShape(CustomRoundedRectangle(cornerRadius: 45, corners: [.topRight, .bottomLeft, .topLeft, .bottomRight]))
-                        
+        VStack(spacing: 0){
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack{
+                        ForEach(0..<buttonsText.count, id: \.self) { i in
+                            ButtonWithFlash(geometry: geometry, text: buttonsText[i]).environmentObject(dataSource)
+                        }.frame(maxWidth: .infinity)
                     }
-                    .padding([.bottom, .top], 10.0)
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }.simultaneousGesture(DragGesture())
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(dataSource.selectedTheme.backgroundColor))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(dataSource.selectedTheme.backgroundColor))
     }
 }
+
+
 
 #Preview {
     WorkoutTypesView().environmentObject(DataSource())

@@ -10,13 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var dataSource: DataSource
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        PagesView().environmentObject(DataSource())
     }
 }
 

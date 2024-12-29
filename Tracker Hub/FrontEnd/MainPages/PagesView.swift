@@ -30,16 +30,14 @@ struct PagesView: View {
     
     var body: some View {
         GeometryReader{geometry in
-            VStack {
+            VStack(spacing: 0) {
                 SearchBarView(geometry: geometry).environmentObject(dataSource)
                 pages[selectedPage]
                     .tag(selectedPage)
                     .tabViewStyle(DefaultTabViewStyle())
-                    .ignoresSafeArea()
-                Spacer()
                 TabBarView(selectedPage: $selectedPage, geometry: geometry).environmentObject(dataSource)
                     .frame(height: geometry.size.height * 0.05)
-            }.background(Color(dataSource.selectedTheme.backgroundColor))
+            }.background(Color(dataSource.selectedTheme.secondaryFontColor))
         }
         .dynamicTypeSize(DynamicTypeSize.large...DynamicTypeSize.accessibility1)
     }
