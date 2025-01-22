@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BDE313172CFB63250036A511 /* DevicePpi in Frameworks */ = {isa = PBXBuildFile; productRef = BDE313162CFB63250036A511 /* DevicePpi */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BDE3127F2CF7D9A40036A511 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -30,15 +34,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BDE312D62CF9CD7C0036A511 /* Exceptions for "Fonts" folder in "Tracker Hub" target */ = {
+		430EDA622D3CC24200484D4D /* Exceptions for "Fonts" folder in "Tracker Hub" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Readex Pro/ReadexPro-Bold.ttf",
-				"Readex Pro/ReadexPro-ExtraLight.ttf",
-				"Readex Pro/ReadexPro-Light.ttf",
-				"Readex Pro/ReadexPro-Medium.ttf",
-				"Readex Pro/ReadexPro-Regular.ttf",
-				"Readex Pro/ReadexPro-SemiBold.ttf",
 			);
 			target = BDE3126C2CF7D9A20036A511 /* Tracker Hub */;
 		};
@@ -68,7 +67,7 @@
 		BDE312C92CF9A9550036A511 /* Fonts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				BDE312D62CF9CD7C0036A511 /* Exceptions for "Fonts" folder in "Tracker Hub" target */,
+				430EDA622D3CC24200484D4D /* Exceptions for "Fonts" folder in "Tracker Hub" target */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -80,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDE313172CFB63250036A511 /* DevicePpi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +151,7 @@
 			);
 			name = "Tracker Hub";
 			packageProductDependencies = (
+				BDE313162CFB63250036A511 /* DevicePpi */,
 			);
 			productName = "Tracker Hub";
 			productReference = BDE3126D2CF7D9A20036A511 /* Tracker Hub.app */;
@@ -235,6 +236,7 @@
 			mainGroup = BDE312642CF7D9A20036A511;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BDE3126E2CF7D9A20036A511 /* Products */;
@@ -430,10 +432,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tracker Hub/Tracker_Hub.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
-				DEVELOPMENT_TEAM = 4P22TJC4BQ;
+				DEVELOPMENT_TEAM = T4RV5L6D6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
@@ -452,9 +455,9 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "Ahui.Tracker-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ahui.Tracker-Hub1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -471,10 +474,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tracker Hub/Tracker_Hub.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
-				DEVELOPMENT_TEAM = 4P22TJC4BQ;
+				DEVELOPMENT_TEAM = T4RV5L6D6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
@@ -493,8 +497,9 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ahui.Tracker-Hub1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -631,6 +636,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clafou/DevicePpi";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.21;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BDE313162CFB63250036A511 /* DevicePpi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */;
+			productName = DevicePpi;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE312652CF7D9A20036A511 /* Project object */;
 }

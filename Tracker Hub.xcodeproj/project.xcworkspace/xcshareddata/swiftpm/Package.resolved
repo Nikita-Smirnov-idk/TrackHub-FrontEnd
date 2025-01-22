@@ -1,0 +1,15 @@
+{
+  "originHash" : "4bf0bc16729b497e5c1e7aaa1d8b4eb43e4c397c79855652a5c560c0404fb8f2",
+  "pins" : [
+    {
+      "identity" : "deviceppi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Clafou/DevicePpi",
+      "state" : {
+        "revision" : "337a49ae5eb8a43e1d1473ad5a587c012b82b3ab",
+        "version" : "1.2.21"
+      }
+    }
+  ],
+  "version" : 3
+}
