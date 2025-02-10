@@ -21,7 +21,8 @@ struct PagesView: View {
         AnyView(WorkoutTypesView()),
         AnyView(FirstQuestionView()),
         AnyView(FirstQuestionView()),
-        AnyView(WorkoutTypesView())
+        AnyView(WorkoutTypesView()),
+        AnyView(ProfileView(plugUser: PlugUser(email: "", password: "", isTrener: false, avatar: "", name: "Роман", surname: "Николаев", notifications: ["Поздравляю! Вы выиграли билет на качественную порку!"], rating: 4.89)))
     ]
     
     init() {
@@ -31,7 +32,7 @@ struct PagesView: View {
     var body: some View {
         GeometryReader{geometry in
             VStack(spacing: 0) {
-                SearchBarView(geometry: geometry).environmentObject(dataSource)
+//                SearchBarView(geometry: geometry).environmentObject(dataSource)
                 pages[selectedPage]
                     .tag(selectedPage)
                     .tabViewStyle(DefaultTabViewStyle())

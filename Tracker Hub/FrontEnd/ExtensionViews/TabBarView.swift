@@ -20,10 +20,11 @@ struct TabBarView: View {
     @EnvironmentObject var dataSource: DataSource
     @Binding var selectedPage: Int
     @State private var tabBarImages = [
-        "magnifyingglass",
         "house.fill",
-        "person.fill",
-        "gearshape.fill"
+        "person.2.fill",
+        "calendar",
+        "dumbbell.fill",
+        "person.fill"
     ]
     
     @State var geometry: GeometryProxy
@@ -34,11 +35,10 @@ struct TabBarView: View {
                 .frame(width: .infinity, height: 2)
                 .overlay(Color(dataSource.selectedTheme.primaryColor))
             GeometryReader{ proxy in
-                HStack{
+                HStack( spacing: 20){
                     ForEach(0..<tabBarImages.count, id: \.self){ i in
-                        Spacer()
                         Image(systemName: tabBarImages[i])
-                            .padding(.top)
+                            .padding()
                             .foregroundColor(selectedPage == i ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.secondaryBackgroundColor))
                             .onTapGesture {
                                 withAnimation(.easeIn(duration: 0.1)) {
@@ -46,9 +46,9 @@ struct TabBarView: View {
                                 }
                             }
                             .font(.system(size: proxy.size.height*0.7))
-                        Spacer()
                     }
                 }
+                .frame(maxWidth: .infinity)
                 .background(Color(dataSource.selectedTheme.backgroundColor))
             }
         }
