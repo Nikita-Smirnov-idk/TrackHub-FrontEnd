@@ -22,7 +22,7 @@ struct PagesView: View {
         AnyView(FirstQuestionView()),
         AnyView(FirstQuestionView()),
         AnyView(WorkoutTypesView()),
-        AnyView(ProfileView(plugUser: PlugUser(email: "", password: "", isTrener: false, avatar: "", name: "Роман", surname: "Николаев", notifications: ["Поздравляю! Вы выиграли билет на качественную порку!"], rating: 4.89)))
+        AnyView(ProfileView(plugUser: PlugUser(email: "", password: "", phoneNumber: "+79143783306", isMale: true, isTrener: true, avatar: "plugImage", name: "Роман", surname: "Николаев", notifications: ["Поздравляю! Вы выиграли билет на качественную порку!"], rating: 4.89)))
     ]
     
     init() {

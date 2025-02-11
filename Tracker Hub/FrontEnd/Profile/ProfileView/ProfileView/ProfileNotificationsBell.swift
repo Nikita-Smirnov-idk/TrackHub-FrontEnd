@@ -13,6 +13,7 @@ struct ProfileNotificationsBell: View {
     var geometry: GeometryProxy
     
     var body: some View {
+        Spacer()
         HStack{
             NavigationLink(
                 destination: NotificationsView(),

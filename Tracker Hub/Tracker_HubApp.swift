@@ -11,7 +11,7 @@ import SwiftUI
 struct Tracker_HubApp: App {
     var body: some Scene {
         WindowGroup {
-            ProfileView(plugUser: PlugUser(email: "", password: "", isTrener: true, avatar: "", name: "Роман", surname: "Николаев", notifications: ["Поздравляю! Вы выиграли билет на качественную порку!"], rating: 4.89)).environmentObject(DataSource())
+            ProfileView(plugUser: PlugUser(email: "arem379@mail.ru", password: "", phoneNumber: "+79143783306", isMale: true, isTrener: true, avatar: "plugImage", name: "Роман", surname: "Николаев", notifications: ["Поздравляю! Вы выиграли билет на качественную порку!"], rating: 4.89)).environmentObject(DataSource())
         }
     }
 }

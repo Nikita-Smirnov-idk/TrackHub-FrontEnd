@@ -8,10 +8,12 @@
 import SwiftUI
 import Foundation
 
-struct PlugUser {
+struct PlugUser: Equatable {
     var id = UUID()
     var email : String
     var password : String
+    var phoneNumber : String
+    var isMale: Bool
     var isTrener : Bool
     var avatar : String
     var name : String

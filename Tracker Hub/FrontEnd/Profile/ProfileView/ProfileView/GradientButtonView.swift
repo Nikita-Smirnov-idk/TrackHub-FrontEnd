@@ -18,7 +18,7 @@ struct GradientButtonView: View {
         }) {
             Text("TrackHub++")
                 .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                .foregroundColor(Color(dataSourse.selectedTheme.backgroundColor))
+                .foregroundColor(Color(dataSourse.selectedTheme.primaryColor))
                 .frame(width: geometry.size.width * 0.85,
                        height: geometry.size.height * 0.08)
         }
