@@ -1,5 +1,5 @@
 {
-  "originHash" : "4bf0bc16729b497e5c1e7aaa1d8b4eb43e4c397c79855652a5c560c0404fb8f2",
+  "originHash" : "db693ed3751f05a954ead011b11e1b9e2e80c8bb1962b8b45748f54628bf7239",
   "pins" : [
     {
       "identity" : "deviceppi",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "337a49ae5eb8a43e1d1473ad5a587c012b82b3ab",
         "version" : "1.2.21"
+      }
+    },
+    {
+      "identity" : "swiftkeychainwrapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jrendel/SwiftKeychainWrapper",
+      "state" : {
+        "revision" : "185a3165346a03767101c4f62e9a545a0fe0530f",
+        "version" : "4.0.1"
       }
     }
   ],

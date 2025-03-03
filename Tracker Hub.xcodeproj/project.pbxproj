@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43824F742D67241C00234A26 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 43824F732D67241C00234A26 /* SwiftKeychainWrapper */; };
 		BDE313172CFB63250036A511 /* DevicePpi in Frameworks */ = {isa = PBXBuildFile; productRef = BDE313162CFB63250036A511 /* DevicePpi */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43824F742D67241C00234A26 /* SwiftKeychainWrapper in Frameworks */,
 				BDE313172CFB63250036A511 /* DevicePpi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +154,7 @@
 			name = "Tracker Hub";
 			packageProductDependencies = (
 				BDE313162CFB63250036A511 /* DevicePpi */,
+				43824F732D67241C00234A26 /* SwiftKeychainWrapper */,
 			);
 			productName = "Tracker Hub";
 			productReference = BDE3126D2CF7D9A20036A511 /* Tracker Hub.app */;
@@ -237,6 +240,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */,
+				4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BDE3126E2CF7D9A20036A511 /* Products */;
@@ -638,6 +642,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Clafou/DevicePpi";
@@ -649,6 +661,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		43824F732D67241C00234A26 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		BDE313162CFB63250036A511 /* DevicePpi */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */;
