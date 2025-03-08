@@ -22,7 +22,6 @@ struct TabBarView: View {
     @State private var tabBarImages = [
         "house.fill",
         "person.2.fill",
-        "calendar",
         "dumbbell.fill",
         "person.fill"
     ]
@@ -35,7 +34,7 @@ struct TabBarView: View {
                 .frame(width: .infinity, height: 2)
                 .overlay(Color(dataSource.selectedTheme.primaryColor))
             GeometryReader{ proxy in
-                HStack( spacing: 10){
+                HStack( spacing: 30){
                     ForEach(0..<tabBarImages.count, id: \.self){ i in
                         Image(systemName: tabBarImages[i])
                             .foregroundColor(selectedPage == i ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.secondaryBackgroundColor))

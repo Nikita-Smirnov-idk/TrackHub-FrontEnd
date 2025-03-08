@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomToggleStyle: ToggleStyle {
-    @EnvironmentObject var dataSource: DataSource
+    @StateObject var dataSource = DataSource()
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
@@ -17,11 +17,11 @@ struct CustomToggleStyle: ToggleStyle {
             Spacer()
 
             RoundedRectangle(cornerRadius: 20)
-                .fill(configuration.isOn ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.backgroundColor))
+                .fill(configuration.isOn ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.secondaryBackgroundColor))
                 .frame(width: 50, height: 30)
                 .overlay(
                     Circle()
-                        .fill(configuration.isOn ? Color(dataSource.selectedTheme.secondaryFontColor) : Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                        .fill(configuration.isOn ? Color(dataSource.selectedTheme.secondaryFontColor) : Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         .padding(2)
                         .offset(x: configuration.isOn ? 10 : -10)
                         .animation(.easeInOut(duration: 0.2), value: configuration.isOn)
@@ -30,7 +30,6 @@ struct CustomToggleStyle: ToggleStyle {
                     configuration.isOn.toggle()
                 }
         }
-        .padding()
     }
 }
 

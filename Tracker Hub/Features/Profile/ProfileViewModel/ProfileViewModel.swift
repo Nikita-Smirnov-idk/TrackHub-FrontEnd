@@ -18,7 +18,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getProfileData() {
-        let urlString = "http://127.0.0.1:8000/auth/profile/\(userId)/"
+        let urlString = "http://127.0.0.1:8000/users/account/\(userId)/"
         APIService.shared.request(urlString: urlString, method: "GET", requiresAuth: true) { (result: Result<User, Error>) in
             DispatchQueue.main.async {
                 switch result {

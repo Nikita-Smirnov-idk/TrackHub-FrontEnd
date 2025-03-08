@@ -16,21 +16,33 @@ struct ProfileImage: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if let image = image{
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
-                    .cornerRadius(20)
-                    .padding([.top, .trailing, .leading])
-                
+            
+            if let fullAvatarURL = URL(string: "\(user.avatar)") {
+                AsyncImage(url: fullAvatarURL) { image in
+                    image.resizable()
+                         .aspectRatio(contentMode: .fill)
+                         .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
+                         .cornerRadius(20)
+                    
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
+                        .cornerRadius(20)
+                }
             }
-            else{
-                Image("\(user.avatar)")
-                    .resizable()
-                    .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
-                    .cornerRadius(20)
-                    .padding([.top, .trailing, .leading])
-            }
+            
+//            if let image = image{
+//                Image(uiImage: image)
+//                    
+//                
+//            }
+//            else{
+//                Image("\(user.avatar)")
+//                    .resizable()
+//                    .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
+//                    .cornerRadius(20)
+//                    .padding([.top, .trailing, .leading])
+//            }
             HStack(spacing: 0){
                 Text("Изменить фото")
                     .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))

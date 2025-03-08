@@ -60,6 +60,7 @@ struct SignInButton: View {
         viewModel.signIn()
         if viewModel.isLoggedIn {
             mainManager.currentView = .main
+            print("перехожу на основной экран")
         }
         else{
             print("Неверный email или пароль")

@@ -14,7 +14,7 @@ struct SearchBarView: View {
     @EnvironmentObject var dataSource: DataSource
     @State private var selectedSortOption : String? = nil
     @State private var isSortShow: Bool = false
-    @State private var isFilterShow: Bool = false
+    @Binding var isFilterShow: Bool
     @State private var searchText = ""
     @State var isPushedFemale: Bool = false
     @State var isPushedMale: Bool = false
@@ -85,11 +85,11 @@ struct SearchBarView: View {
                         .onTapGesture {
                             isFilterShow.toggle()
                         }
-                        .sheet(isPresented: $isFilterShow) {
-                            FiltersSheetView()
-                                .presentationDetents([.large])
-                                .presentationDragIndicator(.visible)
-                        }
+//                        .sheet(isPresented: $isFilterShow) {
+//                            FiltersSheetView()
+//                                .presentationDetents([.large])
+//                                .presentationDragIndicator(.visible)
+//                        }
                     
                 }
                 .frame(width: .infinity, height: geometryHeight * 0.05)
@@ -131,6 +131,7 @@ struct SearchBarView: View {
                 
             }.background(Color(dataSource.selectedTheme.backgroundColor))
         }
+        .accentColor(Color(dataSource.selectedTheme.primaryColor))
     }
 }
 
@@ -138,7 +139,7 @@ struct SearchBarView: View {
 #Preview {
     GeometryReader{geometry in
         VStack{
-            SearchBarView(geometry: geometry).environmentObject(DataSource())
+            SearchBarView(isFilterShow: .constant(true), geometry: geometry).environmentObject(DataSource())
         }
     }
 }

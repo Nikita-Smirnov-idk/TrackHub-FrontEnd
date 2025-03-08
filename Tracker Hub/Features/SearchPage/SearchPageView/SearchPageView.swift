@@ -11,153 +11,84 @@ struct SearchPageView: View {
     @EnvironmentObject var dataSource : DataSource
     
     @State private var isAnimated = false
-            
-    var allWorkoutsAndPlans: [WorkoutCardModel] = [
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Никита Смирнов",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Коновалов Иван",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Воронин Глеб",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Ковальчук Артем",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        WorkoutCardModel(
-            name: "Тренировка плеч",
-            description: "Самая пиздатая тренировк плеч. Вы ахуеете",
-            isWorkout: true,
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25")
+    @State private var isFilterShow: Bool = false
+    @State private var animationFuncs = CardAnimationFunc()
+    var allWorkoutsAndPlans: [any CardRepresentable] = [
+        Workout(id: 0, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Plan(id: 1, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Workout(id: 2, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Plan(id: 3, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Workout(id: 4, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Plan(id: 5, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Workout(id: 6, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+        Plan(id: 7, name: "Тренировка ног", description: "cscscscscs", createdBy: "Николаев Роман", createdAt: "10.10.20")
     ]
     
+    @State private var isShowFullScreenCardView: Bool = false
+    @State private var currentCard: Workout?
     var body: some View {
         GeometryReader { globalGeo in
-            VStack{
-                SearchBarView(geometry: globalGeo)
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        ForEach(Array(allWorkoutsAndPlans.enumerated()), id: \.offset) { index, card in
-                            GeometryReader { localGeo in
-                                let frame = localGeo.frame(in: .global)
-                                let screenHeight = UIScreen.main.bounds.height
-                                
-                                WorkoutCardView(geometry: globalGeo, cardModel: card)
-                                    .scaleEffect(scaleFactor(for: frame, screenHeight: screenHeight))
-                                    .opacity(opacity(for: frame, screenHeight: screenHeight))
-                                    .offset(y: offset(for: frame, screenHeight: screenHeight))
-                                    .animation(.easeInOut(duration: 0.3), value: frame)
+            ZStack { // Используем ZStack вместо VStack для слоев
+                // Основной фон экрана
+                Color(dataSource.selectedTheme.backgroundColor)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    SearchBarView(isFilterShow: $isFilterShow, geometry: globalGeo)
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            ForEach(allWorkoutsAndPlans, id: \.id) { card in
+                                GeometryReader { localGeo in
+                                    let frame = localGeo.frame(in: .global)
+                                    let screenHeight = UIScreen.main.bounds.height
+                                    
+                                    if let workout = card as? Workout {
+                                        CardView(
+                                            geometry: globalGeo,
+                                            cardModel: workout,
+                                            onAdd: { print("Тренировка добавлена") },
+                                            onTap: {  }) // Сделать пут запрос с добавлением тренировки
+                                            .scaleEffect(animationFuncs.scaleFactor(for: frame, screenHeight: screenHeight))
+                                            .opacity(animationFuncs.opacity(for: frame, screenHeight: screenHeight))
+                                            .offset(y: animationFuncs.offset(for: frame, screenHeight: screenHeight))
+                                            .animation(.easeInOut(duration: 0.3), value: frame)
+                                            
+                                    }
+                                    else if let plan = card as? Plan {
+                                        CardView(
+                                            geometry: globalGeo,
+                                            cardModel: plan,
+                                            onAdd: { print("План добавлен") }) // Сделать пут запрос с добавлением плана
+                                            .scaleEffect(animationFuncs.scaleFactor(for: frame, screenHeight: screenHeight))
+                                            .opacity(animationFuncs.opacity(for: frame, screenHeight: screenHeight))
+                                            .offset(y: animationFuncs.offset(for: frame, screenHeight: screenHeight))
+                                            .animation(.easeInOut(duration: 0.3), value: frame)
+                                    }
+                                    
+                                }
+                                .frame(
+                                    width: globalGeo.size.width * 0.8,
+                                    height: globalGeo.size.height * 0.2)
                             }
-                            .frame(height: globalGeo.size.height * 0.2)
                         }
+                        .padding()
                     }
-                    .padding()
+                    .scrollIndicators(.hidden)
                 }
-                .scrollIndicators(.hidden)
+            }
+            .sheet(isPresented: $isFilterShow) {
+                FiltersSheetView(geometry: globalGeo)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(dataSource.selectedTheme.backgroundColor))
+        
     }
-    
-    
-    // Вычисление масштаба
-        private func scaleFactor(for frame: CGRect, screenHeight: CGFloat) -> CGFloat {
-            let threshold: CGFloat = 150
-            
-            // Нижняя зона: когда карточка появляется снизу
-            if frame.minY >= screenHeight - threshold {
-                let effect = min((frame.minY - (screenHeight - threshold)) / threshold, 1.0)
-                return 1.0 - effect * 0.2  // уменьшается до 0.8 при максимальном эффекте
-            }
-            // Верхняя зона: когда карточка уходит сверху
-            if frame.minY <= threshold {
-                let effect = min((threshold - frame.minY) / threshold, 1.0)
-                return 1.0 - effect * 0.2
-            }
-            return 1.0 // центральная область – без эффекта
-        }
-        
-        // Вычисление прозрачности
-        private func opacity(for frame: CGRect, screenHeight: CGFloat) -> Double {
-            let threshold: CGFloat = 150
-            
-            if frame.minY >= screenHeight - threshold {
-                let effect = min((frame.minY - (screenHeight - threshold)) / threshold, 1.0)
-                return 1.0 - Double(effect) * 0.5  // opacity снижается до 0.5
-            }
-            if frame.minY <= threshold {
-                let effect = min((threshold - frame.minY) / threshold, 1.0)
-                return 1.0 - Double(effect) * 0.5
-            }
-            return 1.0
-        }
-        
-        // Вычисление вертикального смещения для эффекта параллакса
-        private func offset(for frame: CGRect, screenHeight: CGFloat) -> CGFloat {
-            let threshold: CGFloat = 150
-            
-            if frame.minY >= screenHeight - threshold {
-                let effect = min((frame.minY - (screenHeight - threshold)) / threshold, 1.0)
-                return effect * 30  // смещение вниз до 30 поинтов
-            }
-            if frame.minY <= threshold {
-                let effect = min((threshold - frame.minY) / threshold, 1.0)
-                return -effect * 30  // смещение вверх до -30 поинтов
-            }
-            return 0
-        }
 }
+
+
 
 #Preview {
     SearchPageView().environmentObject(DataSource())

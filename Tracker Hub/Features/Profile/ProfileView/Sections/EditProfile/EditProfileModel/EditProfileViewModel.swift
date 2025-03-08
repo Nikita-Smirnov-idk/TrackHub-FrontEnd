@@ -22,7 +22,7 @@ class EditProfileViewModel: ObservableObject {
             let bodyData = try JSONEncoder().encode(user) // используем binding напрямую
             
             // Отправляем запрос с закодированными данными
-            APIService.shared.request(urlString: "http://127.0.0.1:8000/auth/change_user_data/", method: "PUT", body: bodyData, requiresAuth: true) { (result: Result<User, Error>) in
+            APIService.shared.request(urlString: "http://127.0.0.1:8000/users/account/", method: "PUT", body: bodyData, requiresAuth: true) { (result: Result<User, Error>) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let user):

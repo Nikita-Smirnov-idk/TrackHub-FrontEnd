@@ -150,7 +150,7 @@ class APIService {
     /// Метод для логина пользователя. Отправляет POST-запрос с email и password,
     /// получает токены и сохраняет их.
     func login(user: SignInUserModel, completion: @escaping (Result<TokenResponse, Error>) -> Void) {
-        let urlString = "http://127.0.0.1:8000/auth/login/"
+        let urlString = "http://127.0.0.1:8000/users/account/login/"
         guard let url = URL(string: urlString) else {
             let error = APIError.invalidURL
             print("Login error: \(error.localizedDescription)")
@@ -228,7 +228,7 @@ class APIService {
     
     /// Метод для регистрации пользователя.
     func register(user: SignUpUserModel, completion: @escaping (Result<TokenResponse, Error>) -> Void) {
-        let urlString = "http://127.0.0.1:8000/auth/register/"
+        let urlString = "http://127.0.0.1:8000/users/account/"
         guard let url = URL(string: urlString) else {
             let error = APIError.invalidURL
             print("Register error: \(error.localizedDescription)")
@@ -306,7 +306,7 @@ class APIService {
     
     /// Метод для обновления access-токена с использованием refresh-токена.
     private func refreshAccessToken(completion: @escaping (Bool) -> Void) {
-        let urlString = "http://127.0.0.1:8000/auth/token/refresh/"
+        let urlString = "http://127.0.0.1:8000/users/token/refresh/"
         guard let url = URL(string: urlString) else {
             print("Refresh token error: invalid URL")
             completion(false)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WorkoutCardView: View {
-    @EnvironmentObject var dataSource: DataSource
+    @StateObject var dataSource = DataSource()
     var geometry: GeometryProxy
     var cardModel: WorkoutCardModel
 
@@ -74,7 +74,7 @@ struct WorkoutCardView: View {
             }
             .padding(.vertical, 12)
         }
-        .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.2)
+        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.2)
     }
 }
 
