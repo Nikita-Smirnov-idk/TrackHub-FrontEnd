@@ -37,7 +37,7 @@ struct SearchPageView: View {
                     SearchBarView(isFilterShow: $isFilterShow, geometry: globalGeo)
                     
                     ScrollView {
-                        LazyVStack(spacing: 20) {
+                        LazyVStack(spacing: 35) {
                             ForEach(allWorkoutsAndPlans, id: \.id) { card in
                                 GeometryReader { localGeo in
                                     let frame = localGeo.frame(in: .global)

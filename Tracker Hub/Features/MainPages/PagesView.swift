@@ -43,6 +43,8 @@ struct PagesView: View {
                 pages[selectedPage]
                     .tag(selectedPage)
                     .tabViewStyle(DefaultTabViewStyle())
+                    .tabViewStyle(DefaultTabViewStyle())
+                    .tabViewStyle(DefaultTabViewStyle())
                 TabBarView(selectedPage: $selectedPage, geometry: geometry)
                     .environmentObject(dataSource)
                     .frame(height: geometry.size.height * 0.05)

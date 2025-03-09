@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInFieldsView: View {
-    
+    @StateObject var dataSource = DataSource()
     let fields = SignInInfo().fields
     let geometry: GeometryProxy
     @Binding var user: SignInUserModel
@@ -50,7 +50,7 @@ struct SignInFieldsView: View {
             }
             if let emailMessage = dataChecker.emailValidationMessage {
                 Text(emailMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
                     .font(.caption)
                     .multilineTextAlignment(.center)
                 
@@ -58,7 +58,7 @@ struct SignInFieldsView: View {
             
             if let passwordMessage = dataChecker.passwordValidationMessage {
                 Text(passwordMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
                     .font(.caption)
                     .multilineTextAlignment(.center)
                 

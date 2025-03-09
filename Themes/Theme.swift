@@ -13,5 +13,6 @@ protocol Theme {
     var secondaryBackgroundColor: UIColor { get }
     var buttonsBackgroundColor: UIColor { get }
     var secondaryFontColor: UIColor { get }
+    var subFontColor: UIColor { get }
     var themeName: String { get }
 }

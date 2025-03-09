@@ -12,9 +12,17 @@ struct SignUpButton: View {
     @StateObject var dataSource = DataSource()
     var mainManager: MainManager
     @Binding var isSignUp: Bool
-    
+
+    @State private var isPressed = false // Состояние для анимации нажатия
+
     var body: some View {
-        Button(action: { buttonAction() }){
+        Button(action: {
+            isPressed = true // Анимация нажатия
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isPressed = false // Возвращаем состояние обратно
+                buttonAction() // Выполняем действие кнопки
+            }
+        }) {
             Text("Зарегистрироваться")
                 .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                 .multilineTextAlignment(.center)
@@ -34,13 +42,32 @@ struct SignUpButton: View {
                 )
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(isSignUp ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.buttonsBackgroundColor)))
-                .foregroundStyle(Color(dataSource.selectedTheme.backgroundColor))
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(dataSource.selectedTheme.primaryColor),
+                                    Color(dataSource.selectedTheme.secondaryFontColor)
+                                ]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .shadow(
+                            color: Color(dataSource.selectedTheme.primaryColor).opacity(0.5),
+                            radius: isPressed ? 10 : 5,
+                            x: 0,
+                            y: isPressed ? 5 : 2
+                        )
+                )
+                .foregroundColor(.white) // Цвет текста
+                .scaleEffect(isPressed ? 0.95 : 1.0) // Анимация нажатия
+                .animation(.easeInOut(duration: 0.2), value: isPressed) // Плавная анимация
         }
         .disabled(!isSignUp)
+        .opacity(isSignUp ? 1.0 : 0.6) // Прозрачность, если кнопка неактивна
     }
-    
-    private func buttonAction(){
+
+    private func buttonAction() {
         mainManager.currentView = .main
     }
 }
