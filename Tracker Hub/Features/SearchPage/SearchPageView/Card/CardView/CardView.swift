@@ -32,7 +32,7 @@ struct CardView<Item: CardRepresentable>: View{
 
             VStack(spacing: 8) { // Упрощенная структура
                 // Верхний блок
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         Text(cardModel.name)
                             .font(titleFont)
@@ -53,7 +53,8 @@ struct CardView<Item: CardRepresentable>: View{
 
                     Text(cardModel.description)
                         .font(secondaryFont)
-                        .foregroundColor(Color(dataSource.selectedTheme.backgroundColor))
+                        .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                        
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
@@ -64,12 +65,12 @@ struct CardView<Item: CardRepresentable>: View{
                 VStack(alignment: .leading, spacing: 8) {
                     Text("\(cardModel.createdBy) · \(cardModel.createdAt)")
                         .font(secondaryFont)
-                        .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                        .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
 
                     HStack {
                         Text(cardModel.cardType == .workout ? "Тренировка" : "План")
                             .font(secondaryFont)
-                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                            .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
 
                         Spacer()
                         
@@ -93,7 +94,7 @@ struct CardView<Item: CardRepresentable>: View{
             }
             .padding(.vertical, 12)
         }
-        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.2)
+        .frame(width: geometry.size.width * 0.82, height: geometry.size.height * 0.23)
         .contentShape(Rectangle())
         .onTapGesture {
             print("Вся карточка нажата")

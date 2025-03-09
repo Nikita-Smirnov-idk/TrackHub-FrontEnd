@@ -13,23 +13,29 @@ struct SignInButton: View {
     var mainManager: MainManager
     @Binding var isSignIn: Bool
     @Binding var user: SignInUserModel
-
     @ObservedObject var viewModel: SignInViewModel
-    
+
+    @State private var isPressed = false // Состояние для анимации нажатия
+
     init(geometry: GeometryProxy,
-             mainManager: MainManager,
-             isSignIn: Binding<Bool>,
-             user: Binding<SignInUserModel>) {
-            self.geometry = geometry
-            self.mainManager = mainManager
-            self._isSignIn = isSignIn
-            self._user = user
-            // Инициализируем viewModel с начальным значением, взятым из user.wrappedValue
-            self.viewModel = SignInViewModel(userData: user.wrappedValue)
-        }
-    
+         mainManager: MainManager,
+         isSignIn: Binding<Bool>,
+         user: Binding<SignInUserModel>) {
+        self.geometry = geometry
+        self.mainManager = mainManager
+        self._isSignIn = isSignIn
+        self._user = user
+        self.viewModel = SignInViewModel(userData: user.wrappedValue)
+    }
+
     var body: some View {
-        Button(action: { buttonAction() }){
+        Button(action: {
+            isPressed = true // Анимация нажатия
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isPressed = false // Возвращаем состояние обратно
+                buttonAction() // Выполняем действие кнопки
+            }
+        }) {
             Text("Войти")
                 .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                 .multilineTextAlignment(.center)
@@ -49,24 +55,40 @@ struct SignInButton: View {
                 )
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(isSignIn ? Color(dataSource.selectedTheme.primaryColor) : Color(dataSource.selectedTheme.buttonsBackgroundColor)))
-                .foregroundStyle(Color(dataSource.selectedTheme.backgroundColor))
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(dataSource.selectedTheme.primaryColor),
+                                    Color(dataSource.selectedTheme.secondaryFontColor)
+                                ]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .shadow(
+                            color: Color(dataSource.selectedTheme.primaryColor).opacity(0.5),
+                            radius: isPressed ? 10 : 5,
+                            x: 0,
+                            y: isPressed ? 5 : 2
+                        )
+                )
+                .foregroundColor(.white) // Цвет текста
+                .scaleEffect(isPressed ? 0.95 : 1.0) // Анимация нажатия
+                .animation(.easeInOut(duration: 0.2), value: isPressed) // Плавная анимация
         }
         .disabled(!isSignIn)
+        .opacity(isSignIn ? 1.0 : 0.6) // Прозрачность, если кнопка неактивна
     }
-    
-    private func buttonAction(){
+
+    private func buttonAction() {
         print("email: \(user.email), password: \(user.password)")
         viewModel.signIn()
         if viewModel.isLoggedIn {
             mainManager.currentView = .main
-            print("перехожу на основной экран")
-        }
-        else{
+            print("Перехожу на основной экран")
+        } else {
             print("Неверный email или пароль")
-            Text("Неверный email или пароль")
-                .font(Font.custom(Fonts.ReadexPro_Regular.rawValue, size: 16))
-                .foregroundColor(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+            // Можно добавить отображение ошибки на экране
         }
     }
 }

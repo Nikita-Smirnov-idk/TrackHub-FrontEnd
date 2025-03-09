@@ -12,6 +12,7 @@ struct SignUpFieldsView: View {
     let fields = SignUpInfo().fields
     let geometry: GeometryProxy
     @Binding var user: SignUpUserModel
+    @StateObject var dataSource = DataSource()
     @State var repeatPassword: String = ""
     @Binding var isValid: Bool
     @ObservedObject var dataChecker: CheckValidSignUpData
@@ -58,7 +59,7 @@ struct SignUpFieldsView: View {
             
             if let emailMessage = dataChecker.emailValidationMessage {
                 Text(emailMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
                     .font(.caption)
                     .multilineTextAlignment(.center)
 
@@ -66,7 +67,7 @@ struct SignUpFieldsView: View {
             
             if let passwordMessage = dataChecker.passwordValidationMessage {
                 Text(passwordMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
                     .font(.caption)
                     .multilineTextAlignment(.center)
 
@@ -74,19 +75,19 @@ struct SignUpFieldsView: View {
             
             if repeatPassword != user.password {
                 Text("Пароли не совпадают")
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(dataSource.selectedTheme.subFontColor))
                     .font(.caption)
                     .multilineTextAlignment(.center)
             }
             
             
         }
-        .onChange(of: user) { newValue in
+        .onChange(of: user) { oldValue, newValue in
             print("user изменён: \(newValue)")
             print("formIsValid = \(formIsValid)")
             isValid = formIsValid
         }
-        .onChange(of: repeatPassword) { newValue in
+        .onChange(of: repeatPassword) { oldValue, newValue in
             print("repeatPassword изменён: \(newValue)")
             print("formIsValid = \(formIsValid)")
             isValid = formIsValid

@@ -84,7 +84,15 @@ struct WorkoutPageView: View {
                 .padding()
             }
             .background(Color(dataSource.selectedTheme.backgroundColor))
-            .navigationTitle("Тренировки")
+            .navigationBarTitleDisplayMode(.inline) // Убирает большой заголовок
+            .toolbar {
+                ToolbarItem(placement: .principal) { // Размещает текст в центре
+                    Text("Тренировки")
+                        .font(.headline)
+                        .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
+                }
+            }
+
             .navigationBarItems(
                 trailing: Menu {
                     Button("Создать тренировку") { isWorkoutConstructorVisible.toggle() }
@@ -114,8 +122,8 @@ struct WorkoutPageView: View {
     private func categorySection(for categoryKey: String, items: [any CardRepresentable], geometry: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Text(categoryKey)
-                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 22))
-                .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
+                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 21))
+                .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
                 .padding(.horizontal)
             
             TabView {

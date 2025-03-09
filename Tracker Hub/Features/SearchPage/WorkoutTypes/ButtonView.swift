@@ -26,7 +26,7 @@ struct ButtonWithFlash: View {
                 .multilineTextAlignment(.center)
                 .padding([.bottom, .top])
                 .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                .background(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                .background(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                 .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 13))
             
                 .clipShape(CustomRoundedRectangle(cornerRadius: 45, corners: [.topRight, .bottomLeft, .topLeft, .bottomRight]))

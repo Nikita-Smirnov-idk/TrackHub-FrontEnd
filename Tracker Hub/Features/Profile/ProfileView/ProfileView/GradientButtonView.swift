@@ -25,7 +25,7 @@ struct GradientButtonView: View {
         .background(
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color(dataSourse.selectedTheme.buttonsBackgroundColor),
+                    Color(dataSourse.selectedTheme.backgroundColor),
                     Color(dataSourse.selectedTheme.primaryColor)
                 ]),
                 center: .center,

@@ -22,7 +22,7 @@ struct ProfileSectionGroupView: View{
                         
                         Text("\(sectionList[index].text)")
                             .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                            .foregroundStyle(Color(dataSource.selectedTheme.backgroundColor))
+                            .foregroundStyle(Color(dataSource.selectedTheme.secondaryFontColor))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()

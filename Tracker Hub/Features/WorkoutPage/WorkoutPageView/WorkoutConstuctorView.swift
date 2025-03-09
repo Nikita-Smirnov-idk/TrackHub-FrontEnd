@@ -181,7 +181,15 @@ struct WorkoutConstuctorView: View {
             }
             .accentColor(Color(dataSource.selectedTheme.primaryColor))
             .background(Color(dataSource.selectedTheme.backgroundColor))
-            .navigationTitle(workout == nil ? "Создание тренировки" : "Редактирование тренировки")
+            .navigationBarTitleDisplayMode(.inline) // Делаем заголовок компактным
+            .toolbar {
+                ToolbarItem(placement: .principal) { // Центрируем заголовок
+                    Text(workout == nil ? "Создание тренировки" : "Редактирование тренировки")
+                        .font(.headline) // Можно поменять шрифт
+                        .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
+                }
+            }
+
         }
     }
     
