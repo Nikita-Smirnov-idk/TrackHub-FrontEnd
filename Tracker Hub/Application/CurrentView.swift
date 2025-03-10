@@ -38,7 +38,7 @@ struct CurrentView: View {
                 
             default:
                 Text("Screen not found")
-                
+                    .foregroundColor(.red)
             }
         }
         .animation(.easeInOut, value: viewManager.currentView) // Плавная анимация при смене представлений

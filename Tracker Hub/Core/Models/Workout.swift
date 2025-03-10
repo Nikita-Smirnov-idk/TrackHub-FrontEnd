@@ -12,7 +12,7 @@ struct Workout: Identifiable, CardRepresentable, Hashable {
     var name: String
     var description: String
     var exercises: [Exercise] = []
-    var targetMuscles: [MuscleGroup] = []
+//    var targetMuscles: [MuscleGroup] = []
     var createdBy: String
     var createdAt: String
     var cardType: CardType = .workout

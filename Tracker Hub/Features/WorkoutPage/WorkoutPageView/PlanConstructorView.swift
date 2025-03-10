@@ -18,9 +18,159 @@ struct PlanConstructorView: View{
 
     @State var selectedSchedule: [DayOfWeek: [Workout]] = [
         .monday: [
-            Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-            Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-            Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25")
+            Workout(
+                id: 1,
+                name: "Тренировка плеч 1",
+                description: "Интенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого пояса",
+                exercises: [
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов")
+                ],
+    //            targetMuscles: [.shoulders],
+                createdBy: "Николаев Роман",
+                createdAt: "10.01.25"),
+            Workout(
+                id: 1,
+                name: "Тренировка плеч 1",
+                description: "Интенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого пояса",
+                exercises: [
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов")
+                ],
+    //            targetMuscles: [.shoulders],
+                createdBy: "Николаев Роман",
+                createdAt: "10.01.25"),
+            Workout(
+                id: 1,
+                name: "Тренировка плеч 1",
+                description: "Интенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого пояса",
+                exercises: [
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов"),
+                    Exercise(
+                        id: 0,
+                        name: "Приседы",
+                        description: "Приседы епта",
+                        targetMuscle: ["Ягодицы", "Квадрицепс"],
+                        gymEquipment: ["Тренажер Смитта"],
+                        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                        preview: "",
+                        vidoe: "",
+                        sets: 4,
+                        reps: 12,
+                        restTime: 60,
+                        createdAt: "10.20.20",
+                        createdBy: "никита смирнов")
+                ],
+    //            targetMuscles: [.shoulders],
+                createdBy: "Николаев Роман",
+                createdAt: "10.01.25")
         ],
         .tuesday: [],
         .wednesday: [],
@@ -66,6 +216,26 @@ struct PlanConstructorView: View{
                     .frame(width: geometry.size.width, height: geometry.size.height * 0.2)
                     
                     selectTrainingDay(geometry: geometry)
+                    
+                    Button(action: {
+    //                    saveWorkout()
+                    }) {
+                        Text(plan == nil ? "Создать тренировку" : "Сохранить")
+                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: true, vertical: true)
+                            .padding()
+                            .frame(width: geometry.size.width * 0.8,
+                                   height: geometry.size.height * 0.1)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(selectedWorkouts.isEmpty ?
+                                          Color(dataSource.selectedTheme.buttonsBackgroundColor) :
+                                            Color(dataSource.selectedTheme.primaryColor))
+                            )
+                            .foregroundColor(Color(dataSource.selectedTheme.backgroundColor))
+                    }
+                    .disabled(selectedWorkouts.isEmpty)
 
                 }
                 .accentColor(Color(dataSource.selectedTheme.primaryColor))
@@ -135,17 +305,10 @@ struct PlanConstructorView: View{
             if (selectedSchedule[currentSelectedDay] ?? []).count > 0{
                 ForEach(selectedSchedule[currentSelectedDay] ?? [], id: \.self){ workout in
                     CardView(geometry: geometry, cardModel: workout)
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                deleteItem(currentDay: currentSelectedDay, currentWorkout: workout)
-                            } label: {
-                                Label("Удалить", systemImage: "trash")
-                            }
-                        }
                 }
             }
             
-            WorkoutButton(geometry: geometry)
+            AddWorkoutButton(geometry: geometry)
                 .onTapGesture {
                     withAnimation {
                         isShowAllWorkouts.toggle()
@@ -155,30 +318,30 @@ struct PlanConstructorView: View{
     }
 }
 
-struct WorkoutButton: View {
-    var geometry: GeometryProxy
-    @StateObject var dataSource = DataSource()
-    var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color(dataSource.selectedTheme.buttonsBackgroundColor))
-                
-            VStack {
-                
-                Image(systemName: "plus.circle")
-                    .resizable()
-                    .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                    .frame(width: geometry.size.width * 0.2, height: geometry.size.width * 0.2)
-            }
-        }
-        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.2)
-
-    }
-}
-    
-//#Preview {
-//    PlanConstructorView(myPlans: .constant([]), isShowConstructot: .constant(true))
-////    GeometryReader { geometry in
-////        addWorkoutButton(geometry: geometry)
-////    }
+//struct AddWorkoutButton: View {
+//    var geometry: GeometryProxy
+//    @StateObject var dataSource = DataSource()
+//    var body: some View {
+//        ZStack{
+//            RoundedRectangle(cornerRadius: 20)
+//                .fill(Color(dataSource.selectedTheme.buttonsBackgroundColor))
+//                
+//            VStack {
+//                
+//                Image(systemName: "plus.circle")
+//                    .resizable()
+//                    .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
+//                    .frame(width: geometry.size.width * 0.2, height: geometry.size.width * 0.2)
+//            }
+//        }
+//        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.2)
+//
+//    }
 //}
+    
+#Preview {
+    PlanConstructorView(plan: .constant(nil), isShowConstructot: .constant(true), myPlans: .constant([]))
+//    GeometryReader { geometry in
+//        addWorkoutButton(geometry: geometry)
+//    }
+}

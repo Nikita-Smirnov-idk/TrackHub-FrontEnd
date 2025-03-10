@@ -10,4 +10,5 @@ import Foundation
 enum CardType: Decodable{
     case workout
     case plan
+    case exercise
 }

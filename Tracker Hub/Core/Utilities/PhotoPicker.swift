@@ -1,25 +1,17 @@
-//
-//  PhotoPicker.swift
-//  Tracker Hub
-//
-//  Created by Рома Николаев on 09.02.2025.
-//
-
 import SwiftUI
 import PhotosUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
-    /// Привязка к выбранному изображению
-    @Binding var selectedImage: UIImage?
+    /// Привязка к ссылке выбранного и сохранённого изображения в виде String
+    @Binding var selectedImageString: String?
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        // Конфигурация: выбираем только изображения и разрешаем выбор одного изображения
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 1
+        config.selectionLimit = 1  // Выбираем только одно изображение
         
         let picker = PHPickerViewController(configuration: config)
-        picker.delegate = context.coordinator  // назначаем координатора делегатом
+        picker.delegate = context.coordinator  // Назначаем координатора делегатом
         return picker
     }
     
@@ -48,13 +40,34 @@ struct PhotoPicker: UIViewControllerRepresentable {
                 return
             }
             
+            // Загружаем изображение
             itemProvider.loadObject(ofClass: UIImage.self) { object, error in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
-                        self.parent.selectedImage = image
+                        // Сохраняем изображение и получаем URL, затем сохраняем строковое представление
+                        if let fileURL = saveImageToDocuments(image: image) {
+                            self.parent.selectedImageString = fileURL.absoluteString
+                        }
                     }
+                } else {
+                    print("Ошибка загрузки изображения: \(error?.localizedDescription ?? "Unknown error")")
                 }
             }
         }
+    }
+}
+
+/// Функция для сохранения UIImage в директорию документов и получения URL
+func saveImageToDocuments(image: UIImage, fileName: String = UUID().uuidString + ".jpg") -> URL? {
+    guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let fileURL = documentsDirectory.appendingPathComponent(fileName)
+    do {
+        try data.write(to: fileURL)
+        print(fileURL)
+        return fileURL
+    } catch {
+        print("Ошибка сохранения изображения: \(error)")
+        return nil
     }
 }

@@ -2,186 +2,79 @@
 //  WorkoutPageView.swift
 //  Tracker Hub
 //
-//  Created by Рома Николаев on 04.03.2025.
+//  Created by Рома Николаев on 08.03.2025.
 //
 
 import SwiftUI
 
 struct WorkoutPageView: View {
-    @StateObject var dataSource = DataSource()
-
-    @State private var myWorkouts: [Workout] = [
-        Workout(
-            id: 1,
-            name: "Тренировка плеч 1op",
-            description: "Интенсивная тренировка для развития плечевого пояса",
-            exercises: [
-                Exercise(name: "Приседы", sets: 4, reps: 12, restTime: 60),
-                Exercise(name: "Жимы", sets: 4, reps: 12, restTime: 60),
-                Exercise(name: "Круг с ближним плечом", sets: 4, reps: 12, restTime: 60),
-            ],
-            targetMuscles: [.shoulders],
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25")
+    @StateObject private var dataSource = DataSource()
+    
+    let categories: [String:String] = [
+        "Мои": "Планы, тренировки, упражнения, созданные вами",
+        "Мои опубликованные": "Планы, тренировки, упражнения, созданные вами и высталенные в общий доступ",
+        "Подписки": "Планы, тренировки, упражнения, созданные другими"
     ]
     
-    @State private var myPlans: [Plan] = [
-        Plan(id: 1, name: "Тренировка плеч", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Plan(id: 2, name: "План на неделю", description: "Фуллбоди программа", createdBy: "Николаев Роман", createdAt: "10.01.25")
-    ]
-    
-    @State private var communityWorkouts: [any CardRepresentable] = [
-        Workout(id: 4, name: "Тренировка плеч 4", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25")
-    ]
-    @State private var favoriteWorkouts: [any CardRepresentable] = [
-        Plan(id: 3, name: "План тренировки", description: "Фокус на грудные и плечи", createdBy: "Николаев Роман", createdAt: "10.01.25")
-    ]
-    
-    // Категории, которые отображаются на экране
-    private var categories: [String: [any CardRepresentable]] {
-        [
-            "Мои тренировки": myWorkouts,
-            "Мои планы": myPlans,
-            "Добавленные тренировки сообщества": communityWorkouts,
-            "Избранные тренировки": favoriteWorkouts
-        ]
-    }
-        
-    let orderedCategories: [String] = [
-        "Мои тренировки",
-        "Мои планы",
-        "Добавленные тренировки сообщества",
-        "Избранные тренировки"
-    ]
-    
-    @State private var isWorkoutConstructorVisible: Bool = false
-    @State private var isPlanConstructorVisible: Bool = false
-    
-    @State private var isEditWorkoutVisible: Bool = false
-    @State private var isEditPlanVisible: Bool = false
-    
-    @State private var currentWorkoutForEdit: Workout?
-    @State private var currentWorkoutGroupForEdit: [Workout] = []
-    
-    @State private var currentPlanForEdit: Plan?
-    @State private var currentPlanGroupForEdit: [Plan] = []
-    
+    let categoriesNames: [String] = ["Мои", "Мои опубликованные", "Подписки"]
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .center, spacing: 15) {
-                        ForEach(orderedCategories, id: \.self) { categoryKey in
-                            if let items = categories[categoryKey], !items.isEmpty {
-                                categorySection(for: categoryKey, items: items, geometry: geometry)
-                            }
+                VStack(spacing: 15) {
+                    ForEach(categoriesNames, id: \.self) { category in
+                        if let categoryDescription = categories[category]{
+                            NavigationLink(destination: chooseDestination(category), label: {
+                                categoryView(category, categoryDescription, geometry)
+                                    .padding()
+                            })
+                            .tint(Color(dataSource.selectedTheme.primaryColor))
                         }
                     }
                 }
-                .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
             }
             .background(Color(dataSource.selectedTheme.backgroundColor))
-            .navigationTitle("Тренировки")
-            .navigationBarItems(
-                trailing: Menu {
-                    Button("Создать тренировку") { isWorkoutConstructorVisible.toggle() }
-                    Button("Создать план") { isPlanConstructorVisible.toggle() }
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                }
-            )
-            
-            .sheet(isPresented: $isWorkoutConstructorVisible) {
-                madeWorkout()
-            }
-            .sheet(isPresented: $isPlanConstructorVisible) {
-                madePlan()
-            }
-            .sheet(isPresented: $isEditWorkoutVisible) {
-                editWorkout()
-            }
-            .sheet(isPresented: $isEditPlanVisible) {
-                editPlan()
-            }
+            .navigationTitle("Категории")
         }
+        .accentColor(Color(dataSource.selectedTheme.primaryColor))
     }
     
-    // Раздел для категории
-    private func categorySection(for categoryKey: String, items: [any CardRepresentable], geometry: GeometryProxy) -> some View {
-        VStack(alignment: .leading) {
-            Text(categoryKey)
-                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 22))
-                .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                .padding(.horizontal)
-            
-            TabView {
-                ForEach(items, id: \.id) { item in
-                    if let workout = item as? Workout {
-                        CardView(
-                            geometry: geometry,
-                            cardModel: workout,
-                            onEdit: {
-                                currentWorkoutForEdit = workout
-                                currentWorkoutGroupForEdit = categories[categoryKey] as! [Workout]
-                                isEditWorkoutVisible.toggle()
-                            }) // Сделать пут запрос на изменение тренировки
-                            .padding(.vertical)
+    private func categoryView(_ category: String, _ categoryDescription: String, _ geometry: GeometryProxy) -> some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color(dataSource.selectedTheme.buttonsBackgroundColor))
 
-                            
-                    } else if let plan = item as? Plan {
-                        CardView(
-                            geometry: geometry,
-                            cardModel: plan,
-                            onEdit: {
-                                currentPlanForEdit = plan
-                                currentPlanGroupForEdit = categories[categoryKey] as! [Plan]
-                                isEditPlanVisible.toggle()
-                            }) // Сделать пут запрос на изменение плана
-                            .padding(.vertical)
-                    }
-                }
+            VStack(spacing: 0){
+                Text(category)
+                    .font(Font.custom(Fonts.ReadexPro_Medium.rawValue, size: 23))
+                    .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding([.leading, .trailing])
+                
+                Text(categoryDescription)
+                    .font(Font.custom(Fonts.ReadexPro_Medium.rawValue, size: 14))
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(width: geometry.size.width * 0.85, height: geometry.size.height * 0.25)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(dataSource.selectedTheme.secondaryBackgroundColor))
-            )
-            .clipped()
-            .padding()
-            
-            
-            Divider()
-                .background(Color(dataSource.selectedTheme.primaryColor))
+        }
+        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
+    }
+    
+    private func chooseDestination(_ category: String) -> some View {
+        switch category {
+        case "Мои":
+            return AnyView(WorkoutsGroupView(categoryName: "Мои"))
+        case "Мои опубликованные":
+            return AnyView(WorkoutsGroupView(categoryName: "Мои опубликованные"))
+        case "Подписки":
+            return AnyView(WorkoutsGroupView(categoryName: "Подписки"))
+        default:
+            fatalError("Unsupported category: \(category)")
         }
     }
-    
-    private func editWorkout() -> some View {
-        WorkoutConstuctorView(workout: $currentWorkoutForEdit, myWorkouts: $currentWorkoutGroupForEdit, isShowConstructot: $isEditWorkoutVisible)
-            .presentationDetents([.large])
-    }
-    
-    private func madeWorkout() -> some View {
-        WorkoutConstuctorView(workout: .constant(nil), myWorkouts: $myWorkouts, isShowConstructot: $isWorkoutConstructorVisible)
-            .presentationDetents([.large])
-    }
-    
-    private func deleteWorkout() {
-        
-    }
-    
-    private func editPlan() -> some View {
-        PlanConstructorView(plan: $currentPlanForEdit, isShowConstructot: $isEditPlanVisible, myPlans: $currentPlanGroupForEdit)
-    }
-    
-    private func madePlan() -> some View {
-        PlanConstructorView(plan: $currentPlanForEdit, isShowConstructot: $isPlanConstructorVisible, myPlans: $myPlans)
-            .presentationDetents([.large])
-    }
+
 }
 
 #Preview {

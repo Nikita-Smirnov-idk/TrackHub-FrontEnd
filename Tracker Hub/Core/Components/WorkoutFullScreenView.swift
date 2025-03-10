@@ -9,111 +9,73 @@ import SwiftUI
 
 struct WorkoutFullScreenView: View {
     @StateObject private var dataSource = DataSource()
-    var workout: Workout
+    var workout: Workout?
     
+    @State private var isExpandedExrecises: Bool = true
     var body: some View {
-        GeometryReader { geometry in
-            ZStack{
-                ScrollView(.vertical, showsIndicators: false){
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text(workout.name)
-                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 28))
-                            .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                            .frame(alignment: .topLeading)
+//        NavigationView{
+            GeometryReader { geometry in
+                ZStack{
+                    ScrollView(.vertical, showsIndicators: false){
                         
+                        let workout = workout ?? Workout(id: 2, name: "Нихуя", description: "не вышло", createdBy: "дура", createdAt: "10.01.25")
                         
-                        
-                        Text("Описание: \(workout.description)")
-                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                            .frame(alignment: .center)
-                        
-                        Divider()
-                            .background(Color(dataSource.selectedTheme.primaryColor))
-
-                        
-                        VStack {
-                            Text("Группы мышщ")
-                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 20))
-                                .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                                .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text(workout.name)
+                                .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 28))
+                                .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                                .frame(alignment: .topLeading)
                             
-                            let muscles = workout.targetMuscles
-                            ForEach(muscles, id: \.self){ targetMuscle in
-                                HStack {
-                                    Spacer()
-                                    
-                                    Text(targetMuscle.rawValue)
-                                        .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                                        .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                                        .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
-                                }
+                            
+                            DisclosureGroup("Описание") {
+                                Text("\(workout.description)")
+                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
                             }
                             
                             Divider()
                                 .background(Color(dataSource.selectedTheme.primaryColor))
-                        }
-                        
-                        ForEach(workout.exercises, id: \.id){ exercise in
-                            VStack {
-                                Text(exercise.name)
-                                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 20))
-                                    .foregroundColor(Color(dataSource.selectedTheme.primaryColor))
-                                    .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
-                                
-                                
-                                HStack {
-                                    Spacer()
-                                    
-                                    VStack(alignment: .leading){
-                                        Text("Подходов: \(exercise.sets)")
-                                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                                            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
-                                        
-                                        Text("Повторений: \(exercise.reps)")
-                                            .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                                            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
-                                        
-                                        Text("Время отдыха (мин): \(exercise.restTime)").font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
-                                            .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
-                                            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height * 0.25, alignment: .topLeading)
+                            
+                            DisclosureGroup("Упражнения", isExpanded: $isExpandedExrecises) {
+                                VStack(alignment: .leading){
+                                    ForEach(workout.exercises, id: \.id){ exercise in
+                                        CardView(geometry: geometry, cardModel: exercise)
                                     }
                                 }
-                                
-                                Divider()
-                                    .background(Color(dataSource.selectedTheme.primaryColor))
+                                .padding()
                             }
+                            
+                            Divider()
+                                .background(Color(dataSource.selectedTheme.primaryColor))
+                            
+                            TagsView(tags: getTagsString(), geometry: geometry)
+                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3, alignment: .top)
                         }
                     }
-                }
-                .padding()
-                
-                HStack(alignment: .center, spacing: 60) {
-                    Image(systemName: "arrowshape.turn.up.backward")
-                        .resizable()
-                        .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
-                        .frame(width: geometry.size.width * 0.07, height: geometry.size.width * 0.07)
+                    .padding()
                     
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
-                        .frame(width: geometry.size.width * 0.12, height: geometry.size.width * 0.12)
-                    
-                    Image(systemName: "star")
-                        .resizable()
-                        .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
-                        .frame(width: geometry.size.width * 0.07, height: geometry.size.width * 0.07)
+                    CardFullScreenButton(dataSource: dataSource, geometry: geometry)
                 }
-                .frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.15, alignment: .center)
-                .background(.thinMaterial) // системный материал с эффектом размытия
-                .clipShape(RoundedRectangle(cornerRadius: 10)) // скругленные углы для красоты
-                .shadow(color: Color.black.opacity(0.5), radius: 4, x: 0, y: 2)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            }
+            .background(Color(dataSource.selectedTheme.backgroundColor))
+            .accentColor(Color(dataSource.selectedTheme.primaryColor))
+//        }
+    }
+    
+    private func getTagsString() -> [String] {
+        var tags: [String] = []
+        
+        if let workout = workout{
+            
+            for exercise in workout.exercises {
+                tags.append(contentsOf: exercise.gymEquipment)
+                tags.append(contentsOf: exercise.targetMuscle)
+
             }
         }
-        .background(Color(dataSource.selectedTheme.backgroundColor))
+        
+        return tags
     }
 }
 
@@ -124,11 +86,50 @@ struct WorkoutFullScreenView: View {
             name: "Тренировка плеч 1",
             description: "Интенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого поясаИнтенсивная тренировка для развития плечевого пояса",
             exercises: [
-                Exercise(id: 0, name: "Приседы", sets: 4, reps: 12, restTime: 60),
-                Exercise(id: 1, name: "Жимы", sets: 4, reps: 12, restTime: 60),
-                Exercise(id: 2, name: "Круг с ближним плечом", sets: 4, reps: 12, restTime: 60),
+                Exercise(
+                    id: 0,
+                    name: "Приседы",
+                    description: "Приседы епта",
+                    targetMuscle: ["Ягодицы", "Квадрицепс"],
+                    gymEquipment: ["Тренажер Смитта"],
+                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                    preview: "",
+                    vidoe: "",
+                    sets: 4,
+                    reps: 12,
+                    restTime: 60,
+                    createdAt: "10.20.20",
+                    createdBy: "никита смирнов"),
+                Exercise(
+                    id: 0,
+                    name: "Приседы",
+                    description: "Приседы епта",
+                    targetMuscle: ["Ягодицы", "Квадрицепс"],
+                    gymEquipment: ["Тренажер Смитта"],
+                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                    preview: "",
+                    vidoe: "",
+                    sets: 4,
+                    reps: 12,
+                    restTime: 60,
+                    createdAt: "10.20.20",
+                    createdBy: "никита смирнов"),
+                Exercise(
+                    id: 0,
+                    name: "Приседы",
+                    description: "Приседы епта",
+                    targetMuscle: ["Ягодицы", "Квадрицепс"],
+                    gymEquipment: ["Тренажер Смитта"],
+                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+                    preview: "",
+                    vidoe: "",
+                    sets: 4,
+                    reps: 12,
+                    restTime: 60,
+                    createdAt: "10.20.20",
+                    createdBy: "никита смирнов")
             ],
-            targetMuscles: [.shoulders],
+//            targetMuscles: [.shoulders],
             createdBy: "Николаев Роман",
             createdAt: "10.01.25")
     )

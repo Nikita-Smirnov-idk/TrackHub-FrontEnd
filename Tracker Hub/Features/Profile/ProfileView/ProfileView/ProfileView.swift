@@ -15,7 +15,7 @@ struct ProfileView: View {
                             ProfileNotificationsBell(user: user, geometry: geometry)
                             
                             // Image
-                            ProfileImage(geometry: geometry, user: user)
+                            ProfileImage(geometry: geometry, user: $viewModel.profileData)
                             
                             // Name and rating
                             ProfileNameAndRating(user: user, geometry: geometry)
@@ -68,6 +68,14 @@ struct ProfileView: View {
                     .navigationBarHidden(true)
                 } else {
                     // Показываем индикатор загрузки, пока данные не получены
+                    
+                    Text("проблема проблема")
+                        .foregroundColor(.red)
+                        .onAppear {
+                            print("проблема проблема")
+                        }
+                    
+                    
                     VStack {
                         Spacer()
                         ProgressView("Загрузка профиля...")
@@ -83,5 +91,6 @@ struct ProfileView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(Color(dataSource.selectedTheme.primaryColor))
         .edgesIgnoringSafeArea(.all)
+ 
     }
 }

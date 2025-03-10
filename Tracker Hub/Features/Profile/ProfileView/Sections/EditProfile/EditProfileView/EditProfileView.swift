@@ -17,18 +17,18 @@ struct EditProfileView: View {
     @ObservedObject var viewModel: EditProfileViewModel
     
     init(user: Binding<User?>) {
-            self._user = user
-            
-            // Проверка на nil для user, чтобы избежать ошибок с unwrap
-            if let unwrappedUser = user.wrappedValue {
-                self._tempUser = State(initialValue: unwrappedUser)
-                self._viewModel = ObservedObject(wrappedValue: EditProfileViewModel(user: unwrappedUser))
-            } else {
-                // Обработка случая, когда user == nil
-                self._tempUser = State(initialValue: User()) // Или ваш дефолтный профиль
-                self._viewModel = ObservedObject(wrappedValue: EditProfileViewModel(user: User())) // Пустой профиль или дефолтные значения
-            }
+        self._user = user
+        
+        // Проверка на nil для user, чтобы избежать ошибок с unwrap
+        if let unwrappedUser = user.wrappedValue {
+            self._tempUser = State(initialValue: unwrappedUser)
+            self._viewModel = ObservedObject(wrappedValue: EditProfileViewModel(user: unwrappedUser))
+        } else {
+            // Обработка случая, когда user == nil
+            self._tempUser = State(initialValue: User()) // Или ваш дефолтный профиль
+            self._viewModel = ObservedObject(wrappedValue: EditProfileViewModel(user: User())) // Пустой профиль или дефолтные значения
         }
+    }
 
     
     var nameFields: [EditProfileSection] {

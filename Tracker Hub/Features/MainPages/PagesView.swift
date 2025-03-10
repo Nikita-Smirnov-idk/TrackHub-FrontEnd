@@ -13,7 +13,7 @@ struct PagesView: View {
 
     
     @State var pages: [AnyView] = [
-        AnyView(WorkoutTypesView()),
+        AnyView(HomePageView()),
         AnyView(SearchPageView().environmentObject(DataSource())),
         AnyView(WorkoutPageView()),
         AnyView(ProfileView())
@@ -34,15 +34,14 @@ struct PagesView: View {
             }
         }
     }
-    
-    
+//    
     var body: some View {
-        GeometryReader{geometry in
+        GeometryReader { geometry in
             VStack(spacing: 0) {
-//                 SearchBarView(geometry: geometry).environmentObject(dataSource)
                 pages[selectedPage]
-                    .tag(selectedPage)
-                    .tabViewStyle(DefaultTabViewStyle())
+                    .onAppear {
+                        print("приехали")
+                    }
                 TabBarView(selectedPage: $selectedPage, geometry: geometry)
                     .environmentObject(dataSource)
                     .frame(height: geometry.size.height * 0.05)
