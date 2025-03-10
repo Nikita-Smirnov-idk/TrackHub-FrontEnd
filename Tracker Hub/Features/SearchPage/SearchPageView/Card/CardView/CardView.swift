@@ -70,7 +70,7 @@ struct CardView<Item: CardRepresentable>: View{
                         }
                         Text(cardModel.description)
                             .font(secondaryFont)
-                            .foregroundColor(Color(dataSource.selectedTheme.backgroundColor))
+                            .foregroundColor(Color(dataSource.selectedTheme.secondaryBackgroundColor))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
@@ -79,7 +79,7 @@ struct CardView<Item: CardRepresentable>: View{
                     
                     // Нижний блок
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("\(cardModel.createdBy) · \(cardModel.createdAt)")
+                        Text("\(cardModel.createdBy.name) · \(String(cardModel.createdAt.prefix(10)))") 
                             .font(secondaryFont)
                             .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
                         
@@ -127,16 +127,16 @@ struct CardView<Item: CardRepresentable>: View{
 }
 
 
-#Preview {
-        
-    GeometryReader{ geometry in
-        VStack {            
-            CardView(
-                geometry: geometry,
-                cardModel: Plan(id: 0, name: "Тренировка ног", description: "крутая выебонская сасная тренирочока ощцвысмывмщывмфтлмотялмтялмитялосмлоямоля", createdBy: "Николаев Роман", createdAt: "10.10.20"),
-                onAdd: { print("tapped") },
-                onEdit: { print("edited") })
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
+//#Preview {
+//        
+//    GeometryReader{ geometry in
+//        VStack {            
+//            CardView(
+//                geometry: geometry,
+//                cardModel: Plan(id: 0, name: "Тренировка ног", description: "крутая выебонская сасная тренирочока ощцвысмывмщывмфтлмотялмтялмитялосмлоямоля", createdBy: "Николаев Роман", createdAt: "10.10.20"),
+//                onAdd: { print("tapped") },
+//                onEdit: { print("edited") })
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//    }
+//}

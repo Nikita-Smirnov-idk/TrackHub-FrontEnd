@@ -6,28 +6,26 @@
 //
 import Foundation
 
-class SignUpViewModel {
+class SignUpViewModel: ObservableObject {
     @Published var userData: SignUpUserModel
     @Published var errorMessage: String?
     @Published var isLoggedIn: Bool = false
     
     init(userData: SignUpUserModel) {
-            self.userData = userData
-        }
+        self.userData = userData
+    }
     
-    /// Функция входа, использующая APIService.shared.login(...)
+    /// Функция регистрации, использующая APIService.shared.register(...)
     func signUp() {
-        // Вызываем метод логина, который должен быть реализован в APIService
         APIService.shared.register(user: userData) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let tokenResponse):
-                    print("Логин успешен. Access token: \(tokenResponse.access_token)")
-                    // Если логин успешен, можно установить флаг
+                case .success(let messageResponse):
+                    print("Регистрация успешна. Сообщение: \(messageResponse.message)")
                     self.isLoggedIn = true
                     self.errorMessage = nil
                 case .failure(let error):
-                    print("Ошибка логина: \(error.localizedDescription)")
+                    print("Ошибка регистрации: \(error.localizedDescription)")
                     self.errorMessage = error.localizedDescription
                     self.isLoggedIn = false
                 }

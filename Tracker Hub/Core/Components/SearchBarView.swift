@@ -56,7 +56,7 @@ struct SearchBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                    .background(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                    .background(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                     .cornerRadius(45)
                     
                     Image(systemName: "arrow.up.arrow.down")
@@ -113,13 +113,13 @@ struct SearchBarView: View {
                                     .frame(height: AdaptiveValue(idealValue: geometryHeight * 0.025, minValue: 35, maxValue: 45))
                                     .background(
                                         fastFilters[key] == false ? // Проверяем, что значение не nil
-                                        Color(dataSource.selectedTheme.secondaryBackgroundColor) :
+                                        Color(dataSource.selectedTheme.buttonsBackgroundColor) :
                                             Color(dataSource.selectedTheme.primaryColor)
                                     )
                                     .foregroundColor(
                                         fastFilters[key] == false ? // Проверяем, что значение не nil
                                         Color(dataSource.selectedTheme.primaryColor) :
-                                            Color(dataSource.selectedTheme.secondaryBackgroundColor)
+                                            Color(dataSource.selectedTheme.buttonsBackgroundColor)
                                     )
                                     .cornerRadius(45)
                                     .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 13))

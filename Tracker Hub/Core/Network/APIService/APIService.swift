@@ -26,6 +26,11 @@ struct TokenResponse: Codable {
     }
 }
 
+struct MessageResponse: Codable {
+    let message: String
+}
+
+
 enum APIError: Error, LocalizedError {
     case invalidURL
     case invalidResponse
@@ -227,7 +232,7 @@ class APIService {
     }
     
     /// Метод для регистрации пользователя.
-    func register(user: SignUpUserModel, completion: @escaping (Result<TokenResponse, Error>) -> Void) {
+    func register(user: SignUpUserModel, completion: @escaping (Result<MessageResponse, Error>) -> Void) {
         let urlString = "http://127.0.0.1:8000/users/account/"
         guard let url = URL(string: urlString) else {
             let error = APIError.invalidURL
@@ -245,8 +250,6 @@ class APIService {
             request.httpBody = bodyData
             if let jsonString = String(data: bodyData, encoding: .utf8) {
                 print("Encoded JSON for register: \(jsonString)")
-            } else {
-                print("Unable to convert encoded data to string")
             }
         } catch {
             print("Encoding error in register: \(error.localizedDescription)")
@@ -284,18 +287,11 @@ class APIService {
             
             if let responseString = String(data: data, encoding: .utf8) {
                 print("Raw response JSON: \(responseString)")
-            } else {
-                print("Unable to convert response data to string")
             }
             
             do {
-                let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
-                KeychainWrapper.standard.set(tokenResponse.access_token, forKey: "accessToken")
-                KeychainWrapper.standard.set(tokenResponse.refresh_token, forKey: "refreshToken")
-                if let userID = tokenResponse.user_id {
-                    KeychainWrapper.standard.set(userID, forKey: "userID")
-                }
-                completion(.success(tokenResponse))
+                let messageResponse = try JSONDecoder().decode(MessageResponse.self, from: data)
+                completion(.success(messageResponse))
             } catch {
                 print("Decoding error in register: \(error.localizedDescription)")
                 completion(.failure(error))
@@ -303,6 +299,7 @@ class APIService {
         }
         task.resume()
     }
+
     
     /// Метод для обновления access-токена с использованием refresh-токена.
     private func refreshAccessToken(completion: @escaping (Bool) -> Void) {

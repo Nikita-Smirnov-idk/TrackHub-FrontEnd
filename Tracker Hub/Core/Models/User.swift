@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct User: Codable, Equatable {
+struct User: Codable, Equatable, Hashable {
     var id: Int = 0
     var email: String = ""
     var password: String = ""      // Отсутствует в JSON, будет иметь значение ""

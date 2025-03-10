@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct Workout: Identifiable, CardRepresentable, Hashable {
+struct Workout: Identifiable, CardRepresentable, Hashable, Codable{
     var id: Int
     var name: String
     var description: String
     var exercises: [Exercise] = []
-//    var targetMuscles: [MuscleGroup] = []
-    var createdBy: String
+    var createdBy: User
     var createdAt: String
     var cardType: CardType = .workout
 }

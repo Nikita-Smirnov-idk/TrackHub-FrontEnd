@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Plan: Identifiable, CardRepresentable {
+struct Plan: Identifiable, CardRepresentable, Hashable, Codable {
     var id: Int
     var name: String
     var description: String
     var schedule: [DayOfWeek: [Workout]] = [:]
-    var createdBy: String
+    var createdBy: User
     var createdAt: String
     var cardType: CardType = .plan
 }

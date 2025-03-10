@@ -35,17 +35,13 @@ struct EditProfileView: View {
         return [
             EditProfileSection(title: "Имя", titleField: $tempUser.name),
             EditProfileSection(title: "Фамилия", titleField: $tempUser.surname),
-            EditProfileSection(
-                title: "Пол",
-                titleField: Binding.constant(tempUser.isMale ? "Мужской" : "Женский")
-            )
+
         ]
     }
     
     var loginFields: [EditProfileSection]{
         return [
             EditProfileSection(title: "Почта", titleField: $tempUser.email),
-            EditProfileSection(title: "Телефон", titleField: $tempUser.phoneNumber)
         ]
     }
     

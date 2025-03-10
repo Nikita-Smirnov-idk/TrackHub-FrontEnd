@@ -28,7 +28,7 @@ struct EdtiProfileSectionGroup: View {
                         .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .foregroundStyle(Color(dataSource.selectedTheme.backgroundColor))
+                        .foregroundStyle(Color(dataSource.selectedTheme.secondaryFontColor))
                         
                         // Когда TextField появился первый раз, сохраним его значение
                         .onAppear {

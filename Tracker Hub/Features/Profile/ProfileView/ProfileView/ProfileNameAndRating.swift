@@ -22,15 +22,15 @@ struct ProfileNameAndRating: View {
                 .padding([.bottom, .top])
                 .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
             
-            HStack(spacing: 0) {
-                Image(systemName: "star.fill")
-                    .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
-                    .font(.system(size: geometry.size.height * 0.025))
-                
-                Text(String(format: "%.2f", user.rating))
-                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 20))
-                    .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
-            }
+//            HStack(spacing: 0) {
+//                Image(systemName: "star.fill")
+//                    .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
+//                    .font(.system(size: geometry.size.height * 0.025))
+//                
+//                Text(String(format: "%.2f", user.rating))
+//                    .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 20))
+//                    .foregroundStyle(Color(dataSource.selectedTheme.primaryColor))
+//            }
         }
         .padding(.bottom)
     }

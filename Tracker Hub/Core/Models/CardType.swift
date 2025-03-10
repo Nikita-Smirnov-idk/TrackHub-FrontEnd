@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CardType: Decodable{
+enum CardType: Codable{
     case workout
     case plan
     case exercise

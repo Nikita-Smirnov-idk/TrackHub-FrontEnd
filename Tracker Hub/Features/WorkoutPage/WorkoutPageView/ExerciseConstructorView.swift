@@ -22,6 +22,7 @@ struct ExerciseConstructorView: View {
     @State private var instructions: [String] = []
     
     @State private var currentInstructionIndex: Int = 1
+    @Binding var selectedExersiceGroup: [Exercise]
     @Binding var isShowConstructor: Bool
     
     @Binding var exercise: Exercise?
@@ -35,7 +36,7 @@ struct ExerciseConstructorView: View {
                             
                             TextField("Описание тренивроки", text: $description)
                         }
-                        .listRowBackground(Color(dataSource.selectedTheme.secondaryBackgroundColor)) // Фон только для этой секции
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor)) // Фон только для этой секции
                         
                         Section{
                             HStack {
@@ -62,12 +63,17 @@ struct ExerciseConstructorView: View {
                                 Stepper("", value: $restTime, in: 0...10)
                             }
                         }
-                        .listRowBackground(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         
                         Section(header: Text("Целевые мышцы")) {
                             muscleGroupPicker()
                         }
-                        .listRowBackground(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor))
+                        
+                        Section(header: Text("Оборудование")) {
+                            gymEquipmentPicker()
+                        }
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         
                         Section{
                             if instructions.count > 0 {
@@ -99,13 +105,13 @@ struct ExerciseConstructorView: View {
                                 currentInstructionIndex += 1
                             }
                         }
-                        .listRowBackground(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                         
                     }
                     .scrollContentBackground(.hidden)
                     
                     Button(action: {
-    //                    saveWorkout()
+                        saveExercise()
                     }) {
                         Text(exercise == nil ? "Создать тренировку" : "Сохранить")
                             .font(Font.custom(Fonts.ReadexPro_Bold.rawValue, size: 16))
@@ -135,6 +141,7 @@ struct ExerciseConstructorView: View {
                     self.description = exercise.description
                     self.targetMuscle = exercise.targetMuscle
                     self.gymEquipment = exercise.gymEquipment
+                    self.instructions = exercise.instructions
                     self.preview = exercise.preview
                     self.vidoe = exercise.vidoe
                     self.sets = exercise.sets
@@ -173,23 +180,78 @@ struct ExerciseConstructorView: View {
             }
         }
     }
+    
+    private func gymEquipmentPicker() -> some View {
+        ForEach(GymEquipment.allCases, id: \.self) { equipment in
+            HStack {
+                Text(equipment.rawValue)
+                    .font(Font.custom(Fonts.ReadexPro_Medium.rawValue, size: 16))
+                    .foregroundColor(Color(dataSource.selectedTheme.secondaryFontColor))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Toggle(isOn: Binding<Bool>(
+                    get: {
+                        gymEquipment.contains(equipment.rawValue)
+                    },
+                    set: { newValue in
+                        if newValue {
+                            gymEquipment.append(equipment.rawValue)
+                        } else {
+                            gymEquipment.removeAll { $0 == equipment.rawValue }
+                        }
+                    }
+                )) {
+                    EmptyView()
+                }
+                .toggleStyle(CustomToggleStyle())
+            }
+        }
+    }
+    
+    private func saveExercise(){
+        if exercise == nil{
+            selectedExersiceGroup.append(
+                Exercise(name: name, description: description, targetMuscle: targetMuscle, gymEquipment: gymEquipment, instructions: instructions, preview: "", vidoe: "", sets: sets, reps: reps, restTime: restTime, createdAt: "10.02.25", createdBy: User(name: "Roman Nikolaev"))
+            )
+        } else{
+            if let index = selectedExersiceGroup.firstIndex(of: exercise!) {
+                selectedExersiceGroup[index] = Exercise(
+                    name: name,
+                    description: description,
+                    targetMuscle: targetMuscle,
+                    gymEquipment: gymEquipment,
+                    instructions: instructions,
+                    preview: "",
+                    vidoe: "",
+                    sets: sets,
+                    reps: reps,
+                    restTime: restTime,
+                    createdAt: "10.02.25",
+                    createdBy: User(name: "Roman Nikolaev")
+                )
+            }
+        }
+        
+        
+        isShowConstructor.toggle()
+    }
 }
 
 #Preview {
-    ExerciseConstructorView(isShowConstructor: .constant(true), exercise: .constant(Exercise(
-        id: 0,
-        name: "Приседы",
-        description: "Приседы епта",
-        targetMuscle: ["Ягодицы", "Квадрицепс"],
-        gymEquipment: ["Тренажер Смитта"],
-        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-        preview: "",
-        vidoe: "",
-        sets: 4,
-        reps: 12,
-        restTime: 60,
-        createdAt: "10.20.20",
-        createdBy: "никита смирнов")))
+//    ExerciseConstructorView(isShowConstructor: .constant(true), exercise: .constant(Exercise(
+//        id: 0,
+//        name: "Приседы",
+//        description: "Приседы епта",
+//        targetMuscle: ["Ягодицы", "Квадрицепс"],
+//        gymEquipment: ["Тренажер Смитта"],
+//        instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+//        preview: "",
+//        vidoe: "",
+//        sets: 4,
+//        reps: 12,
+//        restTime: 60,
+//        createdAt: "10.20.20",
+//        createdBy: "никита смирнов")))
     
-//    ExerciseConstructorView(isShowConstructor: .constant(true), exercise: .constant(nil))
+    ExerciseConstructorView(selectedExersiceGroup: .constant([]), isShowConstructor: .constant(true), exercise: .constant(nil))
 }

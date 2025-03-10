@@ -12,7 +12,7 @@ struct CardModel: Identifiable {
     var name: String
     var description: String
     var createdAt: String
-    var createdBy: String
+    var createdBy: User
     var cardType: CardType
     
     init<T: CardRepresentable>(from item: T, cardType: CardType) {

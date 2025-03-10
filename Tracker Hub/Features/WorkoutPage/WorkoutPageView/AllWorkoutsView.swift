@@ -10,22 +10,7 @@ import SwiftUI
 struct AllWorkoutsView: View {
     @StateObject var dataSource = DataSource()
     @State private var animationFuncs = CardAnimationFunc()
-    @State private var allUsersWorkouts: [Workout] = [
-        
-        Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 1, name: "Тренировка плеч 1", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25")
-        
-    ]
+    @State private var allUsersWorkouts: [Workout] = Plugs.allWorkouts
     var body: some View {
         NavigationView {
             GeometryReader { globalGeo in

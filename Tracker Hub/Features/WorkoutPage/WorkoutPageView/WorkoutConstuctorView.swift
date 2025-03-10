@@ -15,59 +15,11 @@ struct WorkoutConstuctorView: View {
     @State var name: String = ""
     @State var description: String = ""
     @State var selectedMuscles: [MuscleGroup] = []
-    @State var selectedExercises: [Exercise] = [
-//        Exercise(id: 0, name: "Тяга верхнего блока", sets: 4, reps: 8, restTime: 2),
-//        Exercise(id: 1, name: "Жим какой-то", sets: 4, reps: 8, restTime: 2)
-        
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов"),
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов"),
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов")
-    ]
+    @State var selectedExercises: [Exercise] = []
     
     @Binding var workout: Workout?
 
     @State private var isExpandedDict: [Int: Bool] = [
-//        0: false,
-//        1: false
         :
     ]
     @State private var exerciseIndex: Int = 0
@@ -89,7 +41,7 @@ struct WorkoutConstuctorView: View {
                             
                             TextField("Описание тренивроки", text: $description)
                         }
-                        .listRowBackground(Color(dataSource.selectedTheme.secondaryBackgroundColor)) // Фон только для этой секции
+                        .listRowBackground(Color(dataSource.selectedTheme.buttonsBackgroundColor)) // Фон только для этой секции
                         
 //                        Section(header: Text("Целевые мышцы")) {
 //                            ForEach(MuscleGroup.allCases, id: \.self) { muscle in
@@ -287,7 +239,7 @@ struct WorkoutConstuctorView: View {
             print(workout?.name)
         }
         else{
-            let newWorkout = Workout(id: 0, name: name, description: description, exercises: selectedExercises, createdBy: "Добаебик юзер", createdAt: "10.12.20")
+            let newWorkout = Plugs.workout1
             
             myWorkouts.append(newWorkout)
             isShowConstructot = false

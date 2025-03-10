@@ -26,14 +26,14 @@ struct PagesView: View {
 //        AnyView(ProfileView())
 //    ]
     
-    init() {
-        UITabBar.appearance().isHidden = true
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            for window in windowScene.windows {
-                window.backgroundColor = UIColor.darkGray
-            }
-        }
-    }
+//    init() {
+//        UITabBar.appearance().isHidden = true
+//        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+//            for window in windowScene.windows {
+//                window.backgroundColor = UIColor.darkGray
+//            }
+//        }
+//    }
 //    
     var body: some View {
         GeometryReader { geometry in

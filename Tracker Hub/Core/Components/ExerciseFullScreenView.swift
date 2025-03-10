@@ -72,27 +72,27 @@ struct ExerciseFullScreenView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .center) {
                             // Превью упражнения
-                            if let imageURL = URL(string: exercise.preview) {
-                                AsyncImage(url: imageURL) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView() // Индикатор загрузки
-                                    case .success(let image):
-                                        image.resizable()
-                                             .aspectRatio(contentMode: .fit)
-                                    case .failure:
-                                        Image(systemName: "photo") // Заглушка при ошибке
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundColor(.gray)
-                                    @unknown default:
-                                        EmptyView()
-                                    }
-                                }
-                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
-                            } else {
-                                Text("Неверный URL для превью")
-                            }
+//                            if let imageURL = URL(string: exercise.preview) {
+//                                AsyncImage(url: imageURL) { phase in
+//                                    switch phase {
+//                                    case .empty:
+//                                        ProgressView() // Индикатор загрузки
+//                                    case .success(let image):
+//                                        image.resizable()
+//                                             .aspectRatio(contentMode: .fit)
+//                                    case .failure:
+//                                        Image(systemName: "photo") // Заглушка при ошибке
+//                                            .resizable()
+//                                            .aspectRatio(contentMode: .fit)
+//                                            .foregroundColor(.gray)
+//                                    @unknown default:
+//                                        EmptyView()
+//                                    }
+//                                }
+//                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
+//                            } else {
+//                                Text("Неверный URL для превью")
+//                            }
                             
                             // Название упражнения
                             Text(exercise.name)
@@ -193,18 +193,18 @@ struct ExerciseFullScreenView: View {
                             Divider()
                                 .background(Color(dataSource.selectedTheme.primaryColor))
                             
-                            // Видео с обработкой состояний
-                            if let videoURL = URL(string: exercise.vidoe) {
-                                let player = AVPlayer(url: videoURL)
-                                VideoPlayerWrapper(player: player)
-                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
-                            } else {
-                                Text("Ошибка: неверный URL видео")
-                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
-                            }
+//                            // Видео с обработкой состояний
+//                            if let videoURL = URL(string: exercise.vidoe) {
+//                                let player = AVPlayer(url: videoURL)
+//                                VideoPlayerWrapper(player: player)
+//                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
+//                            } else {
+//                                Text("Ошибка: неверный URL видео")
+//                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
+//                            }
                             
-                            Divider()
-                                .background(Color(dataSource.selectedTheme.primaryColor))
+//                            Divider()
+//                                .background(Color(dataSource.selectedTheme.primaryColor))
                             
                             // Инструкция по выполнению
                             VStack(alignment: .leading) {
@@ -248,11 +248,11 @@ struct ExerciseFullScreenView: View {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
-                .background(Color(dataSource.selectedTheme.secondaryBackgroundColor))
+                .background(Color(dataSource.selectedTheme.buttonsBackgroundColor))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(dataSource.selectedTheme.buttonsBackgroundColor), lineWidth: 2)
+                        .stroke(Color(dataSource.selectedTheme.secondaryBackgroundColor), lineWidth: 2)
                 )
             }
         }
@@ -268,25 +268,25 @@ struct ExerciseFullScreenView: View {
 }
 
 // MARK: - Предварительный просмотр
-
-struct ExerciseFullScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExerciseFullScreenView(
-            exercise: Exercise(
-                id: 0,
-                name: "Приседы",
-                description: "Приседы епта",
-                targetMuscle: ["Ягодицы", "Квадрицепс"],
-                gymEquipment: ["Тренажер Смитта"],
-                instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-                preview: "https://picsum.photos/300",
-                vidoe: "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4",
-                sets: 4,
-                reps: 12,
-                restTime: 60,
-                createdAt: "10.20.20",
-                createdBy: "никита смирнов"
-            )
-        )
-    }
-}
+//
+//struct ExerciseFullScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExerciseFullScreenView(
+//            exercise: Exercise(
+//                id: 0,
+//                name: "Приседы",
+//                description: "Приседы епта",
+//                targetMuscle: ["Ягодицы", "Квадрицепс"],
+//                gymEquipment: ["Тренажер Смитта"],
+//                instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
+//                preview: "https://picsum.photos/300",
+//                vidoe: "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4",
+//                sets: 4,
+//                reps: 12,
+//                restTime: 60,
+//                createdAt: "10.20.20",
+//                createdBy: "никита смирнов"
+//            )
+//        )
+//    }
+//}

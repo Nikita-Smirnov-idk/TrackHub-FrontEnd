@@ -51,11 +51,6 @@ struct ProfileView: View {
                                 geometry: geometry,
                                 sectionList: [
                                     ProfileSection(text: "Добавить аккаунт", image: "plus.circle.fill", destination: AnyView(Text("В разработке!"))),
-                                    ProfileSection(
-                                        text: user.isTrener ? "Стать тренером" : "Стать клиентом",
-                                        image: "arrow.triangle.2.circlepath",
-                                        destination: AnyView(Text("В разработке!"))
-                                    ),
                                     ProfileSection(text: "Выйти", image: "door.right.hand.open", destination: AnyView(Text("В разработке!")))
                                 ]
                             )

@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol CardRepresentable: Identifiable, Hashable {
+protocol CardRepresentable: Identifiable, Hashable, Codable{
     var id: Int { get }
     var name: String { get }
     var description: String { get }
     var createdAt: String { get }
-    var createdBy: String { get }
+    var createdBy: User { get }
     var cardType: CardType { get }
 }

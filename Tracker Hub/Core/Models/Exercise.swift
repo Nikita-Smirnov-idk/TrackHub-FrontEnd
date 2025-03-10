@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exercise: Identifiable, Hashable, CardRepresentable {
+struct Exercise: Identifiable, Hashable, CardRepresentable, Codable {
     var id: Int = 0
     var name: String
     var description: String
@@ -20,7 +20,7 @@ struct Exercise: Identifiable, Hashable, CardRepresentable {
     var reps: Int
     var restTime: Int
     var createdAt: String
-    var createdBy: String
+    var createdBy: User
     var cardType: CardType = .exercise
 }
 

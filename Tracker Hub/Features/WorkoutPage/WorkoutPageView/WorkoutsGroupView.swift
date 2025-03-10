@@ -9,112 +9,12 @@ import SwiftUI
 
 struct WorkoutsGroupView: View {
     @StateObject var dataSource = DataSource()
-    @State private var workoutGroup: [Workout] = [
-        Workout(
-            id: 1,
-            name: "Тренировка плеч 1op",
-            description: "Интенсивная тренировка для развития плечевого пояса",
-            exercises: [
-                Exercise(
-                    id: 0,
-                    name: "Приседы",
-                    description: "Приседы епта",
-                    targetMuscle: ["Ягодицы", "Квадрицепс"],
-                    gymEquipment: ["Тренажер Смитта"],
-                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-                    preview: "",
-                    vidoe: "",
-                    sets: 4,
-                    reps: 12,
-                    restTime: 60,
-                    createdAt: "10.20.20",
-                    createdBy: "никита смирнов"),
-                Exercise(
-                    id: 0,
-                    name: "Приседы",
-                    description: "Приседы епта",
-                    targetMuscle: ["Ягодицы", "Квадрицепс"],
-                    gymEquipment: ["Тренажер Смитта"],
-                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-                    preview: "",
-                    vidoe: "",
-                    sets: 4,
-                    reps: 12,
-                    restTime: 60,
-                    createdAt: "10.20.20",
-                    createdBy: "никита смирнов"),
-                Exercise(
-                    id: 0,
-                    name: "Приседы",
-                    description: "Приседы епта",
-                    targetMuscle: ["Ягодицы", "Квадрицепс"],
-                    gymEquipment: ["Тренажер Смитта"],
-                    instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-                    preview: "",
-                    vidoe: "",
-                    sets: 4,
-                    reps: 12,
-                    restTime: 60,
-                    createdAt: "10.20.20",
-                    createdBy: "никита смирнов"),
-            ],
-//            targetMuscles: [.shoulders],
-            createdBy: "Николаев Роман",
-            createdAt: "10.01.25"),
-        
-        Workout(id: 2, name: "Тренировка плеч 2", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Workout(id: 3, name: "Тренировка плеч 3", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25")
-    ]
+    @StateObject var viewModel = WorkoutPageViewModel()
     
-    @State private var planGroup: [Plan] = [
-        Plan(id: 1, name: "Тренировка плеч", description: "Интенсивная тренировка для развития плечевого пояса", createdBy: "Николаев Роман", createdAt: "10.01.25"),
-        Plan(id: 2, name: "План на неделю", description: "Фуллбоди программа", createdBy: "Николаев Роман", createdAt: "10.01.25")
-    ]
+    @State private var workoutGroup: [Workout] = Plugs.allWorkouts
+    @State private var planGroup: [Plan] = Plugs.allPlans
     
-    @State private var exerciseGroup: [Exercise] = [
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов"),
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов"),
-        Exercise(
-            id: 0,
-            name: "Приседы",
-            description: "Приседы епта",
-            targetMuscle: ["Ягодицы", "Квадрицепс"],
-            gymEquipment: ["Тренажер Смитта"],
-            instructions: ["Подойдите к тренажеру", "Нажмите на кнопку начать", "Выполняйте", "Думайте о жизни"],
-            preview: "",
-            vidoe: "",
-            sets: 4,
-            reps: 12,
-            restTime: 60,
-            createdAt: "10.20.20",
-            createdBy: "никита смирнов")
-    ]
+    @State private var exerciseGroup: [Exercise] = Plugs.allExercises
     
     // Категории, которые отображаются на экране
     private var categories: [String: [any CardRepresentable]] {
@@ -163,6 +63,11 @@ struct WorkoutsGroupView: View {
                     }
                 }
                 .padding()
+                .onAppear {
+                    viewModel.getWorkout(workoutId: 1)
+                    viewModel.getPlan(planId: 1)
+                    viewModel.getAllUsersExercise()
+                }
             }
             .background(Color(dataSource.selectedTheme.backgroundColor))
             .navigationTitle(categoryName)
@@ -295,11 +200,11 @@ struct WorkoutsGroupView: View {
     }
     
     private func editExercise() -> some View {
-        ExerciseConstructorView(isShowConstructor: $isEditExerciseVisible, exercise: $currentExerciseForEdit)
+        ExerciseConstructorView(selectedExersiceGroup: $exerciseGroup, isShowConstructor: $isEditExerciseVisible, exercise: $currentExerciseForEdit)
     }
     
     private func madeExercise() -> some View {
-        ExerciseConstructorView(isShowConstructor: $isExerciseConstructorVisible, exercise: .constant(nil))
+        ExerciseConstructorView(selectedExersiceGroup: $exerciseGroup, isShowConstructor: $isExerciseConstructorVisible, exercise: .constant(nil))
     }
     
     private func deleteExercise() {

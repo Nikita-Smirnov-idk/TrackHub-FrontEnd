@@ -45,6 +45,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		43C032A22D7ECDDC0045C675 /* Themes 2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Themes 2";
+			sourceTree = "<group>";
+		};
 		BDE3126F2CF7D9A20036A511 /* Tracker Hub */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Tracker Hub";
@@ -58,11 +63,6 @@
 		BDE3128B2CF7D9A40036A511 /* Tracker HubUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Tracker HubUITests";
-			sourceTree = "<group>";
-		};
-		BDE312B02CF7E59F0036A511 /* Themes */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Themes;
 			sourceTree = "<group>";
 		};
 		BDE312C92CF9A9550036A511 /* Fonts */ = {
@@ -105,7 +105,7 @@
 		BDE312642CF7D9A20036A511 = {
 			isa = PBXGroup;
 			children = (
-				BDE312B02CF7E59F0036A511 /* Themes */,
+				43C032A22D7ECDDC0045C675 /* Themes 2 */,
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
 				BDE312812CF7D9A40036A511 /* Tracker HubTests */,
 				BDE3128B2CF7D9A40036A511 /* Tracker HubUITests */,
@@ -148,8 +148,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				43C032A22D7ECDDC0045C675 /* Themes 2 */,
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
-				BDE312B02CF7E59F0036A511 /* Themes */,
 			);
 			name = "Tracker Hub";
 			packageProductDependencies = (

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum DayOfWeek: String, CaseIterable, Identifiable {
+enum DayOfWeek: String, CaseIterable, Identifiable, Codable {
     case monday = "ПН"
     case tuesday = "ВТ"
     case wednesday = "СР"
