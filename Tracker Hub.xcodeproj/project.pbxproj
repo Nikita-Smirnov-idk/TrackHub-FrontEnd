@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		43824F742D67241C00234A26 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 43824F732D67241C00234A26 /* SwiftKeychainWrapper */; };
+		BDE313172CFB63250036A511 /* DevicePpi in Frameworks */ = {isa = PBXBuildFile; productRef = BDE313162CFB63250036A511 /* DevicePpi */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BDE3127F2CF7D9A40036A511 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,7 +34,22 @@
 		BDE312882CF7D9A40036A511 /* Tracker HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		430EDA622D3CC24200484D4D /* Exceptions for "Fonts" folder in "Tracker Hub" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Readex Pro/ReadexPro-Bold.ttf",
+			);
+			target = BDE3126C2CF7D9A20036A511 /* Tracker Hub */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		43C032A22D7ECDDC0045C675 /* Themes 2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Themes 2";
+			sourceTree = "<group>";
+		};
 		BDE3126F2CF7D9A20036A511 /* Tracker Hub */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Tracker Hub";
@@ -45,6 +65,14 @@
 			path = "Tracker HubUITests";
 			sourceTree = "<group>";
 		};
+		BDE312C92CF9A9550036A511 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				430EDA622D3CC24200484D4D /* Exceptions for "Fonts" folder in "Tracker Hub" target */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43824F742D67241C00234A26 /* SwiftKeychainWrapper in Frameworks */,
+				BDE313172CFB63250036A511 /* DevicePpi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +105,12 @@
 		BDE312642CF7D9A20036A511 = {
 			isa = PBXGroup;
 			children = (
+				43C032A22D7ECDDC0045C675 /* Themes 2 */,
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
 				BDE312812CF7D9A40036A511 /* Tracker HubTests */,
 				BDE3128B2CF7D9A40036A511 /* Tracker HubUITests */,
 				BDE3126E2CF7D9A20036A511 /* Products */,
+				BDE312C82CF9A9470036A511 /* static */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +122,14 @@
 				BDE312882CF7D9A40036A511 /* Tracker HubUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BDE312C82CF9A9470036A511 /* static */ = {
+			isa = PBXGroup;
+			children = (
+				BDE312C92CF9A9550036A511 /* Fonts */,
+			);
+			path = static;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,10 +148,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				43C032A22D7ECDDC0045C675 /* Themes 2 */,
 				BDE3126F2CF7D9A20036A511 /* Tracker Hub */,
 			);
 			name = "Tracker Hub";
 			packageProductDependencies = (
+				BDE313162CFB63250036A511 /* DevicePpi */,
+				43824F732D67241C00234A26 /* SwiftKeychainWrapper */,
 			);
 			productName = "Tracker Hub";
 			productReference = BDE3126D2CF7D9A20036A511 /* Tracker Hub.app */;
@@ -195,6 +238,10 @@
 			);
 			mainGroup = BDE312642CF7D9A20036A511;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */,
+				4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BDE3126E2CF7D9A20036A511 /* Products */;
 			projectDirPath = "";
@@ -389,11 +436,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tracker Hub/Tracker_Hub.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
+				DEVELOPMENT_TEAM = T4RV5L6D6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -409,10 +459,12 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ahui.Tracker-Hub1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -426,11 +478,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tracker Hub/Tracker_Hub.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tracker Hub/Preview Content\"";
+				DEVELOPMENT_TEAM = T4RV5L6D6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tracker-Hub-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -446,10 +501,12 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Ahiu.Tracker-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ahui.Tracker-Hub1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -583,6 +640,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+		BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clafou/DevicePpi";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.21;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		43824F732D67241C00234A26 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4392B0F82D6687AF0068550C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+		BDE313162CFB63250036A511 /* DevicePpi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE313152CFB61BF0036A511 /* XCRemoteSwiftPackageReference "DevicePpi" */;
+			productName = DevicePpi;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE312652CF7D9A20036A511 /* Project object */;
 }
